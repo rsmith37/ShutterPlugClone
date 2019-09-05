@@ -1,4 +1,4 @@
-# ShutterPlug-shadowfax
+# ShutterPlug
 
 ## Installation ##
 
@@ -21,6 +21,6 @@
   * Data Modeler
 - Richard Smith
   * Lead Programmer
-  * 
+  * Documentation Lead
 
 ## License ##
