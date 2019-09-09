@@ -1,5 +1,8 @@
 # ShutterPlug
 
+## Link ##
+https://github.com/GGC-SD/ShutterPlug
+
 ## Installation ##
 
 ## Usage ##
@@ -20,8 +23,12 @@ To connect customers and business owners to photographers and videographers usin
 - Malik Norford
   * Project Manager
   * Data Modeler
-- Richard Smith
+- **Richard Smith** :smirk_cat: :earth_americas:
   * Lead Programmer
   * Documentation Lead
+
+## Communication/Coordination ##
+**Message App:** Discord  
+**Project Manager:** Jira
 
 ## License ##
