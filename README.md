@@ -14,7 +14,7 @@ To connect customers and business owners to photographers and videographers usin
 - Rodney Brown
   * UI/UX Designer
   * Lead Tester 
-- Ryan Cunico :dog: :monkey_face:
+- **Ryan Cunico** :dog: :monkey_face:
   * Client Liason
   * Lead Programmer
 - Malik Norford
