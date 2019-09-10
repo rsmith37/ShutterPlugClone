@@ -14,7 +14,7 @@ To connect customers and business owners to photographers and videographers usin
 
 ## Team ##
 
-- Rodney Brown
+- **Rodney Brown** :hurtrealbad: :ocean:	
   * UI/UX Designer
   * Lead Tester 
 - **Ryan Cunico** :dog: :monkey_face:
