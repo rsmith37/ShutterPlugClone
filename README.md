@@ -14,13 +14,13 @@ To connect customers and business owners to photographers and videographers usin
 
 ## Team ##
 
-- Rodney Brown
+- **Rodney Brown** :hurtrealbad: :ocean:	
   * UI/UX Designer
   * Lead Tester 
 - **Ryan Cunico** :dog: :monkey_face:
   * Client Liason
   * Lead Programmer
-- Malik Norford
+- **Malik Norford** :zap: :sos:
   * Project Manager
   * Data Modeler
 - **Richard Smith** :smirk_cat: :earth_americas:
