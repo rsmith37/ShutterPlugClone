@@ -9,9 +9,9 @@ import CreateProfile from './components/profiles/CreateProfile';
 const App = () => {
   return (
     <Router>
-      <div className="App">
+      <div className="App" style={{backgroundColor:"black"}}>
         <Header />
-        <div className="container">
+        <div className="container-fluid">
           <Switch>
             <Route exact path="/search" />
             <Route exact path="/profile/create" component={CreateProfile} />
