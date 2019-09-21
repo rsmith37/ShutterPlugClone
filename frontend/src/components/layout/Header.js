@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Header = props => {
   return (
-    <div>
+    <div style={{backgroundColor:"black"}}>
       <div className="img-responsive">
         <img src={require('../../assets/shutter_plug_logo.png')} alt="Shutter Plug Logo"/>
       </div>
