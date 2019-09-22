@@ -12,7 +12,7 @@ const App = () => {
     <Router>
       <div className="App">
         <Header />
-        <div className="container-fluid">
+        <div className="container">
           <Switch>
             <Route exact path="/search" component={SearchArtist}/>
             <Route exact path="/profile/create" component={CreateProfile} />
