@@ -25,6 +25,13 @@ const specializationArray = [
   }
 ];
 
+const certificationsArray = [
+  {
+    value: '',
+    label: ''
+  }
+];
+
 class SearchArtist extends Component {
   state = {
     selectedOption: null
@@ -35,7 +42,7 @@ class SearchArtist extends Component {
   }
 
   render() {
-    const {selectedOption} = this.state;
+    const { selectedOption } = this.state;
     console.log(selectedOption)
 
     return (
@@ -49,36 +56,43 @@ class SearchArtist extends Component {
             <div className="form-row">
               <div className="form-group col-md-6">
                 <label htmlFor="">First Name</label>
-                <input type="text" className="form-control" placeholder="Enter first name..."/>
+                <input type="text" className="form-control" placeholder="Enter first name..." />
               </div>
               <div className="form-group col-md-6">
                 <label htmlFor="">Last Name</label>
-                <input type="text" className="form-control" placeholder="Enter last name..."/>
+                <input type="text" className="form-control" placeholder="Enter last name..." />
               </div>
             </div>
+            <br />
             <h3>Search by Location</h3>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label htmlFor="">Zip Code</label>
-                <input type="text" className="form-control" placeholder="Enter zip code..."/>
+                <div className="form-row">
+                  <i className="fas fa-map-marker px-2"></i>
+                  <label htmlFor="">Zip Code</label>
+                </div>
+                <input type="text" className="form-control" placeholder="Enter zip code..." />
               </div>
               <div className="form-group col-md-6">
-                <label htmlFor="">Radius</label>
+                <div className="form-row">
+                  <i className="far fa-compass px-2"></i>
+                  <label htmlFor="">Distance</label>
+                </div>
                 <select name="" id="" className="form-control">
-                  <option value="" disabled selected>Select miles of radius</option>
-                  <option value="">10</option>
-                  <option value="">20</option>
-                  <option value="">30</option>
-                  <option value="">40</option>
-                  <option value="">50</option>
+                  <option value="" selected>5 miles</option>
+                  <option value="">10 miles</option>
+                  <option value="">25 miles</option>
+                  <option value="">50 miles</option>
+                  <option value="">100 miles</option>
                 </select>
               </div>
             </div>
+            <br />
             <h3>Search by Qualifications</h3>
             <div className="form-group">
               <label htmlFor="">Specialization(s)</label>
               <Select
-                placeholder="Select one or multiple" 
+                placeholder="Select one or multiple"
                 className="basic-multi-select"
                 isMulti
                 isSearchable
