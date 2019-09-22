@@ -1,8 +1,43 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import Select from 'react-select';
+
+const specializationArray = [
+  {
+    value: 'studioPortraits',
+    label: 'Studio Portraits'
+  },
+  {
+    value: 'outsidePortraits',
+    label: 'Outside Portraits'
+  },
+  {
+    value: 'engagements',
+    label: 'Engagements'
+  },
+  {
+    value: 'weddings',
+    label: 'Weddings'
+  },
+  {
+    value: 'drones',
+    label: 'Drones'
+  }
+];
 
 class SearchArtist extends Component {
+  state = {
+    selectedOption: null
+  }
+
+  handleChange = selectedOption => {
+    this.setState({ selectedOption });
+  }
+
   render() {
+    const {selectedOption} = this.state;
+    console.log(selectedOption)
+
     return (
       <div className="card mb-3">
         <h1 className="card-header">
@@ -41,12 +76,16 @@ class SearchArtist extends Component {
             </div>
             <h3>Search by Qualifications</h3>
             <div className="form-group">
-              <select multiple className="form-control">
-                <option value="" disabled selected>Choose</option>
-                <option value="">Orange</option>
-                <option value="">Red</option>
-                <option value="">Green</option>
-              </select>
+              <label htmlFor="">Specialization(s)</label>
+              <Select
+                placeholder="Select one or multiple" 
+                className="basic-multi-select"
+                isMulti
+                isSearchable
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={specializationArray}
+              />
             </div>
           </form>
         </div>
