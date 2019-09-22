@@ -55,11 +55,17 @@ class SearchArtist extends Component {
             <h3>Search by Name</h3>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label htmlFor="">First Name</label>
+                <div className="form-row">
+                  <i className="far fa-user px-2"></i>
+                  <label htmlFor="">First Name</label>
+                </div>
                 <input type="text" className="form-control" placeholder="Enter first name..." />
               </div>
               <div className="form-group col-md-6">
-                <label htmlFor="">Last Name</label>
+                <div className="form-row">
+                  <i className="far fa-user px-2"></i>
+                  <label htmlFor="">Last Name</label>
+                </div>
                 <input type="text" className="form-control" placeholder="Enter last name..." />
               </div>
             </div>
@@ -90,9 +96,12 @@ class SearchArtist extends Component {
             <br />
             <h3>Search by Qualifications</h3>
             <div className="form-group">
-              <label htmlFor="">Specialization(s)</label>
+              <div className="form-row">
+                <i className="fas fa-camera px-2"></i>
+                <label htmlFor="">Specialization(s)</label>
+              </div>
               <Select
-                placeholder="Select one or multiple"
+                placeholder="Select one or more..."
                 className="basic-multi-select"
                 isMulti
                 isSearchable
@@ -101,6 +110,10 @@ class SearchArtist extends Component {
                 options={specializationArray}
               />
             </div>
+            <br/>
+            <input type="submit"
+              value="Plug an Artist"
+              className="btn btn-secondary text-uppercase font-weight-bold"/>
           </form>
         </div>
       </div>
