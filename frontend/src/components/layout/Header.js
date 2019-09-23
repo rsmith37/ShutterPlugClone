@@ -1,12 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Header = props => {
   return (
-    <div style={{backgroundColor:"black"}}>
+    <div style={{ backgroundColor: "black" }}>
       <div className="img-responsive">
-        <img src={require('../../assets/shutter_plug_logo.png')} alt="Shutter Plug Logo"/>
+        <img
+          src={require("../../assets/shutter_plug_logo.png")}
+          alt="Shutter Plug Logo"
+        />
       </div>
       <nav className="navbar sticky-top navbar-expand-sm mb-3 py-0">
         <div className="container-fluid">
@@ -23,16 +26,21 @@ const Header = props => {
                   <button className="btn btn-secondary btn-lg">Search</button>
                 </Link>
               </li>
+              <li>
+                <Link to="/profile/create" className="nav-link">
+                  <button className="btn btn-secondary btn-lg">
+                    Create Profile
+                  </button>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
     </div>
-  )
-}
+  );
+};
 
-Header.propTypes = {
+Header.propTypes = {};
 
-}
-
-export default Header
+export default Header;

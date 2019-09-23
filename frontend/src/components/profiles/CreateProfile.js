@@ -1,133 +1,192 @@
-import React from 'react'
-import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import Select from "react-select";
 
-const Createprofile = props => {
-    const name = "";
-    const location = "";
-    const radius = "";
-    const specialization = "";
-    const experience = "";
-    const certifications = "";
-    const bio = "";
-    const instagram = "";
-    const facebook = "";
-    const twitter = "";
+const name = "";
+const location = "";
+const radius = "";
+const specialization = "";
+const experience = "";
+const certifications = "";
+const bio = "";
+const instagram = "";
+const facebook = "";
+const twitter = "";
 
+const specializationArray = [
+  {
+    value: "studioPortraits",
+    label: "Studio Portraits"
+  },
+  {
+    value: "outsidePortraits",
+    label: "Outside Portraits"
+  },
+  {
+    value: "engagements",
+    label: "Engagements"
+  },
+  {
+    value: "weddings",
+    label: "Weddings"
+  },
+  {
+    value: "drones",
+    label: "Drones"
+  }
+];
 
-  return (
-      <React.Fragment>
-      <form className='form'>
-      <h1 className='large text-primary'>Create Artist Profile
-      </h1>
-      <div className='form-group'>        
-          <small className='form-text'>
-            Please enter your name:
-          </small>
-          <input
-            type='text'
-            placeholder='Name'
-            name='name'/>
+class CreateProfile extends Component {
+  state = {
+    selectedOption: null
+  };
+
+  handleChange = selectedOption => {
+    this.setState({ selectedOption });
+  };
+
+  render() {
+    const { selectedOption } = this.state;
+    return (
+      <div className="card mb-3">
+        <h1 className="card-header">Create Artist Profile</h1>
+        <div className="card-body text-left">
+          <form>
+            <h3>Artist Info:</h3>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="far fa-user px-2"></i>
+                  <label htmlFor="">Name</label>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Please enter your name"
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="fas fa-map-marked px-2"></i>
+                  <label htmlFor="">Location</label>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Location (city / state)"
+                />
+              </div>
             </div>
-        <div className='form-group'>
-        <small className='form-text'>
-            What is your location (city, state)?
-          </small>
-          <input
-            type='text'
-            placeholder='Location'
-            name='location'
-          />
-          <small className='form-text'>
-            How far are you willing to travel (mi)?
-          </small>
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Radius'
-            name='radius'
-          />
-          <small className='form-text'>
-            Please enter your specialization(s):
-          </small>
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Specialization'
-            name='specialization'
-          />
-          <small className='form-text'>
-            How many years of experience do you have?
-          </small>
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Experience'
-            name='experience'
-          />
-          <small className='form-text'>
-            Do you have any certifications?
-          </small>
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            placeholder='Certifications'
-            name='certifications'
-          />
-          <small className='form-text'>
-            Please describe yourself briefly:
-          </small>
-        </div>
-        <div className='form-group'>
-          <textarea
-            placeholder='A short bio of yourself'
-            name='bio'
-          />
-          <hr></hr>
-          </div>
-        <div className='form-group'>
-            
-        <small className='form-text'>Instagram</small>
-              <input
-                type='text'
-                placeholder='Instagram URL'
-                name='instagram'
+            <br />
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="fas fa-map-marker px-2"></i>
+                  <label htmlFor="">Zip Code</label>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter zip code"
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="fas fa-car px-2"></i>
+                  <label htmlFor="">Distance willing to travel</label>
+                </div>
+                <select name="" id="" className="form-control">
+                  <option value="" selected>
+                    5 miles
+                  </option>
+                  <option value="">10 miles</option>
+                  <option value="">25 miles</option>
+                  <option value="">50 miles</option>
+                  <option value="">100 miles</option>
+                </select>
+              </div>
+            </div>
+            <br />
+            <h3>Specializations and Biography:</h3>
+            <div className="form-group">
+              <div className="form-row">
+                <i className="fas fa-camera px-2"></i>
+                <label htmlFor="">Specialization(s)</label>
+              </div>
+              <Select
+                placeholder="Select one or more..."
+                className="basic-multi-select"
+                isMulti
+                isSearchable
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={specializationArray}
               />
             </div>
-            
-            <div className='form-group'>
-            <small className='form-text'>Facebook</small>
-              <input
-                type='text'
-                placeholder='Facebook URL'
-                name='facebook'
-              />
+            <br />
+            <div className="form-row">
+              <div className="form-group col-md-12">
+                <div className="form-row">
+                  <i className="fas fa-pencil-alt px-2"></i>
+                  <label htmlFor="">Short biography:</label>
+                </div>
+                <input
+                  type="textarea"
+                  className="form-control"
+                  placeholder="Tell us about yourself"
+                />
+              </div>
             </div>
-            
-            <div className='form-group'>
-            <small className='form-text'>Twitter</small>
-              <input
-                type='text'
-                placeholder='Twitter URL'
-                name='twitter'
-              />
+            <br />
+            <h3>Social Media:</h3>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="fab fa-instagram px-2"></i>
+                  <label htmlFor="">Instagram:</label>
+                </div>
+                <input type="text" className="form-control" placeholder="" />
+              </div>
+
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="fab fa-facebook-square px-2"></i>
+                  <label htmlFor="">Facebook:</label>
+                </div>
+                <input type="text" className="form-control" placeholder="" />
+              </div>
             </div>
-            <input type='submit' className='btn btn-primary my-1'
-                  />
-            </form>
+            <br />
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="fab fa-twitter px-2"></i>
+                  <label htmlFor="">Twitter:</label>
+                </div>
+                <input type="text" className="form-control" placeholder="" />
+              </div>
 
-           
-                  </React.Fragment>
-  )
-
-Createprofile.propTypes = {
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="fab fa-linkedin px-2"></i>
+                  <label htmlFor="">LinkedIn:</label>
+                </div>
+                <input type="text" className="form-control" placeholder="" />
+              </div>
+            </div>
+            <br />
+            <input
+              type="submit"
+              value="Create Profile"
+              className="btn btn-secondary text-uppercase font-weight-bold"
+            />
+          </form>
+          <br />
+        </div>
+      </div>
+    );
+  }
 }
-}
 
-export default Createprofile
-
-
+export default CreateProfile;
