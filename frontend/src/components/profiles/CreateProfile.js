@@ -58,23 +58,23 @@ class CreateProfile extends Component {
               <div className="form-group col-md-6">
                 <div className="form-row">
                   <i className="far fa-user px-2"></i>
-                  <label htmlFor="">Name</label>
+                  <label htmlFor="">First Name</label>
                 </div>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Please enter your name"
+                  placeholder="Please enter your first name"
                 />
               </div>
               <div className="form-group col-md-6">
                 <div className="form-row">
-                  <i className="fas fa-map-marked px-2"></i>
-                  <label htmlFor="">Location</label>
+                  <i className="far fa-user px-2"></i>
+                  <label htmlFor="">Last Name</label>
                 </div>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Location (city / state)"
+                  placeholder="Please enter your last name"
                 />
               </div>
             </div>
@@ -82,7 +82,32 @@ class CreateProfile extends Component {
             <div className="form-row">
               <div className="form-group col-md-6">
                 <div className="form-row">
-                  <i className="fas fa-map-marker px-2"></i>
+                  <i className="fas fa-map-marked px-2"></i>
+                  <label htmlFor="">City</label>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="City"
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="fas fa-map-marked px-2"></i>
+                  <label htmlFor="">State</label>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="State"
+                />
+              </div>
+            </div>
+            <br />
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="fas fa-map-marked px-2"></i>
                   <label htmlFor="">Zip Code</label>
                 </div>
                 <input
