@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
 
 const name = "";
@@ -37,7 +37,7 @@ const specializationArray = [
   }
 ];
 
-class CreateProfile extends Component {
+class CreateArtistProfile extends Component {
   state = {
     selectedOption: null
   };
@@ -80,7 +80,7 @@ class CreateProfile extends Component {
             </div>
             <br />
             <div className="form-row">
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-4">
                 <div className="form-row">
                   <i className="fas fa-map-marked px-2"></i>
                   <label htmlFor="">City</label>
@@ -91,7 +91,7 @@ class CreateProfile extends Component {
                   placeholder="City"
                 />
               </div>
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-4">
                 <div className="form-row">
                   <i className="fas fa-map-marked px-2"></i>
                   <label htmlFor="">State</label>
@@ -102,10 +102,7 @@ class CreateProfile extends Component {
                   placeholder="State"
                 />
               </div>
-            </div>
-            <br />
-            <div className="form-row">
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-4">
                 <div className="form-row">
                   <i className="fas fa-map-marked px-2"></i>
                   <label htmlFor="">Zip Code</label>
@@ -123,8 +120,9 @@ class CreateProfile extends Component {
                 </div>
                 <select name="" id="" className="form-control">
                   <option value="" selected>
-                    5 miles
+                    0 miles
                   </option>
+                  <option value="">5 miles</option>
                   <option value="">10 miles</option>
                   <option value="">25 miles</option>
                   <option value="">50 miles</option>
@@ -155,12 +153,13 @@ class CreateProfile extends Component {
                 <div className="form-row">
                   <i className="fas fa-pencil-alt px-2"></i>
                   <label htmlFor="">Short biography:</label>
+                  <input
+                    type="textarea"
+                    className="form-control"
+                    placeholder="Tell us about yourself"
+                    rows="10"
+                  />
                 </div>
-                <input
-                  type="textarea"
-                  className="form-control"
-                  placeholder="Tell us about yourself"
-                />
               </div>
             </div>
             <br />
@@ -214,4 +213,4 @@ class CreateProfile extends Component {
   }
 }
 
-export default CreateProfile;
+export default CreateArtistProfile;

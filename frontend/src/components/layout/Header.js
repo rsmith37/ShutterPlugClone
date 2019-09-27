@@ -27,9 +27,23 @@ const Header = props => {
                 </Link>
               </li>
               <li>
-                <Link to="/profile/create" className="nav-link">
+                <Link to="/exampleSearch" className="nav-link">
                   <button className="btn btn-secondary btn-lg">
-                    Create Profile
+                    Example Search Results
+                  </button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/profile/createClient" className="nav-link">
+                  <button className="btn btn-secondary btn-lg">
+                    Create Client Profile
+                  </button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/profile/createArtist" className="nav-link">
+                  <button className="btn btn-secondary btn-lg">
+                    Create Artist Profile
                   </button>
                 </Link>
               </li>
