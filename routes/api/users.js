@@ -51,7 +51,8 @@ router.post("/register", (req, res) => {
       } else {
         // Create a newUser object if email does not exist
         const newUser = new User({
-          name: req.body.name,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
           email: req.body.email,
           password: req.body.password
         });

@@ -9,7 +9,7 @@ const ExtractJwt = require("passport-jwt").ExtractJwt;
 // Mongoose allows us to search for the user that comes with the payload
 const mongoose = require("mongoose");
 // 'users' was defined in the export statement in the User.js User model (last line)
-const User = mongoose.model("users");
+const User = mongoose.model("user");
 const keys = require("../config/keys");
 
 const options = {};
