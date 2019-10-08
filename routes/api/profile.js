@@ -33,7 +33,7 @@ router.get(
   (req, res) => {
     const errors = {};
     Profile.findOne({ user: req.user.id })
-      .populate("user", "name")
+      .populate("user", "firstName", "lastName")
       .then(profile => {
         // If there's no profile, send an error
         if (!profile) {
@@ -58,7 +58,8 @@ router.get("/all", (req, res) => {
     .then(profiles => {
       if (!profiles) {
         errors.noprofile = "There are no profiles";
-        return res.status(404).json(errors);
+        // return res.status(404).json(errors);
+        return res.status(404).json(profiles);
       }
       res.json(profiles);
     })
@@ -94,7 +95,7 @@ router.get("/handle/:handle", (req, res) => {
 router.get("/user/:user_id", (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.params.user_id })
-    .populate("user", "name")
+    .populate("user", "firstName")
     .then(profile => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user.";
@@ -124,24 +125,27 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
-    if (req.body.company) profileFields.company = req.body.company;
-    if (req.body.website) profileFields.website = req.body.website;
     if (req.body.location) profileFields.location = req.body.location;
-    if (req.body.bio) profileFields.bio = req.body.bio;
-    if (req.body.status) profileFields.status = req.body.status;
-    if (req.body.githubusername)
-      profileFields.githubusername = req.body.githubusername;
-    // Skills - split into an array
-    if (typeof req.body.skills !== "undefined") {
-      profileFields.skills = req.body.skills.split(",");
+    if (req.body.phone) profileFields.phone = req.body.phone;
+    if (typeof req.body.specializations !== "undefined") {
+      profileFields.specializations = req.body.specializations.split(",");
     }
+    if (req.body.website) profileFields.website = req.body.website;
+    if (req.body.priceRange) profileFields.priceRange = req.body.priceRange;
+    if (typeof req.body.certifications !== "undefined") {
+      profileFields.certifications = req.body.certifications.split(",");
+    }
+
     // Social media
-    profileFields.social = {};
-    if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
-    if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
-    if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
-    if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
-    if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
+    profileFields.socialMedia = {};
+    if (req.body.youtube) profileFields.socialMedia.youtube = req.body.youtube;
+    if (req.body.twitter) profileFields.socialMedia.twitter = req.body.twitter;
+    if (req.body.facebook)
+      profileFields.socialMedia.facebook = req.body.facebook;
+    if (req.body.instagram)
+      profileFields.socialMedia.instagram = req.body.instagram;
+    if (req.body.linkedin)
+      profileFields.socialMedia.linkedin = req.body.linkedin;
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
