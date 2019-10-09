@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
 //Load validation
@@ -33,7 +34,7 @@ router.get(
   (req, res) => {
     const errors = {};
     Profile.findOne({ user: req.user.id })
-      .populate("user", "firstName", "lastName")
+      .populate("user", "name")
       .then(profile => {
         // If there's no profile, send an error
         if (!profile) {
@@ -54,7 +55,7 @@ router.get("/all", (req, res) => {
   const errors = {};
 
   Profile.find()
-    .populate("user", "name")
+    .populate("user", "email")
     .then(profiles => {
       if (!profiles) {
         errors.noprofile = "There are no profiles";
@@ -75,7 +76,7 @@ router.get("/all", (req, res) => {
 router.get("/handle/:handle", (req, res) => {
   const errors = {};
   Profile.findOne({ handle: req.params.handle })
-    .populate("user", "name")
+    .populate("user", "firstName")
     .then(profile => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user.";

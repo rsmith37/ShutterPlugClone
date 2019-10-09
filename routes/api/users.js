@@ -28,7 +28,7 @@ const User = require("../../models/User");
 // @access  Public
 router.get("/test", (req, res) => res.json({ msg: "Users works!" }));
 
-// @route   GET api/users/register
+// @route   POST api/users/register
 // @desc    Register a user
 // @access  Public
 // We're going to expect a Post request
@@ -85,7 +85,7 @@ router.post("/register", (req, res) => {
 
 // With Mongoose you can use Promises or Callbacks
 
-// @route   GET api/users/login
+// @route   POST api/users/login
 // @desc    Login a user / return the JWT token
 // @access  Public
 router.post("/login", (req, res) => {
