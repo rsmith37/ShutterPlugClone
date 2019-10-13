@@ -9,6 +9,7 @@ module.exports = function validateRegisterInput(data) {
 
   data.firstName = !isEmpty(data.firstName) ? data.firstName : "";
   data.lastName = !isEmpty(data.lastName) ? data.lastName : "";
+  data.username = !isEmpty(data.username) ? data.username : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
@@ -19,6 +20,10 @@ module.exports = function validateRegisterInput(data) {
 
   if (Validator.isEmpty(data.firstName)) {
     errors.firstName = "First name is required";
+  }
+
+  if (Validator.isEmpty(data.username)) {
+    errors.username = "Username is required";
   }
 
   if (!Validator.isLength(data.lastName, { min: 2, max: 30 })) {

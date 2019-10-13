@@ -34,6 +34,16 @@ const Header = props => {
                 </Link>
               </li>
               <li>
+                <Link to="/register" className="nav-link">
+                  <button className="btn btn-secondary btn-lg">Sign Up</button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/login" className="nav-link">
+                  <button className="btn btn-secondary btn-lg">Sign In</button>
+                </Link>
+              </li>
+              <li>
                 <Link to="/profile/createClient" className="nav-link">
                   <button className="btn btn-secondary btn-lg">
                     Create Client Profile

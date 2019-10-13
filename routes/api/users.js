@@ -36,15 +36,12 @@ router.post("/register", (req, res) => {
   // We want to pull out 'errors' and 'isValid' from the validation function
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
+    // return req.body;
     return res.status(400).json(errors);
   }
 
   User.findOne({ email: req.body.email })
     .then(user => {
-      // if (!user.email || !user.password) {
-      //   return res.send("Must include email and password");
-      // }
-
       if (user) {
         errors.email = "Email already exists";
         return res.status(400).json(errors);
@@ -53,6 +50,7 @@ router.post("/register", (req, res) => {
         const newUser = new User({
           firstName: req.body.firstName,
           lastName: req.body.lastName,
+          username: req.body.username,
           email: req.body.email,
           password: req.body.password
         });
@@ -69,12 +67,12 @@ router.post("/register", (req, res) => {
               // Gives us new user / send back successful response
               .then(user => res.json(user))
               // Throw error if needed
-              .catch(err => console.log(err));
+              .catch(err => res.status(400).json(err));
           });
         });
       }
     })
-    .catch(console.log("User email:" + req.body.email));
+    .catch(err => res.status(400).json(errors));
 });
 
 // Use Mongoose to first find if the email exists
@@ -148,9 +146,14 @@ router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // res.json({ msg: "Successful authentication!" });
     // After successful authentication, the user is now in req.user
-    res.json({ id: req.user.id, name: req.user.name, email: req.user.email });
+    res.json({
+      id: req.user.id,
+      username: req.user.username,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email
+    });
   }
 );
 
