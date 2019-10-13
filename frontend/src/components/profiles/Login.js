@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link, withRouter } from "react-router-dom";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,6 +24,10 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
@@ -37,7 +40,7 @@ class Login extends Component {
       password: this.state.password
     };
 
-    this.props.loginUser(loginUser, this.props.history);
+    this.props.loginUser(loginUser);
   }
 
   render() {
@@ -124,5 +127,5 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loginUser }
-)(withRouter(Login));
-// Second argument is an object where we map the actions (registerUser)
+)(Login);
+// Second argument is an object where we map the actions (loginUser)

@@ -2,6 +2,9 @@ import React from "react";
 import "./App.css";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser } from "./actions/authActions";
 import store from "./store";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -12,6 +15,16 @@ import CreateClientProfile from "./components/profiles/CreateClientProfile";
 import ArtistCard from "./components/profiles/ArtistCard";
 import Register from "./components/profiles/Register";
 import Login from "./components/profiles/Login";
+
+// Check for token
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+  // Decode token to get user information and expiration
+  const decoded = jwt_decode(localStorage.jwtToken);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+}
 
 const App = () => {
   return (
