@@ -7,6 +7,7 @@ import CreateArtistProfile from "./components/profiles/CreateArtistProfile";
 import SearchArtist from "./components/search/SearchArtist";
 import CreateClientProfile from "./components/profiles/CreateClientProfile";
 import ArtistCard from "./components/profiles/ArtistCard";
+import Home from "./components/layout/Home";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Header />
         <div className="container">
           <Switch>
+            <Route exact path="/" component={Home} />
             <Route exact path="/search" component={SearchArtist} />
             <Route exact path="/exampleSearch" component={ArtistCard} />
             <Route

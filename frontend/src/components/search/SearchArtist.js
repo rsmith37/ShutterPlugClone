@@ -46,7 +46,7 @@ class SearchArtist extends Component {
     console.log(selectedOption)
 
     return (
-      <div className="card mb-3">
+      <div className="card mb-3 flex-column">
         <h1 className="card-header">
           Plug an Artist
         </h1>
