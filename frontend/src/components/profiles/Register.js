@@ -13,6 +13,7 @@ class Register extends Component {
       firstName: "",
       lastName: "",
       username: "",
+      usertype: "client",
       email: "",
       password: "",
       password2: "",
@@ -47,6 +48,7 @@ class Register extends Component {
       lastName: this.state.lastName,
       email: this.state.email,
       username: this.state.username,
+      usertype: this.state.usertype,
       password: this.state.password,
       password2: this.state.password2
     };
@@ -200,11 +202,15 @@ class Register extends Component {
                   <i className="far fa-user px-2"></i>
                   <label htmlFor="">User type: Client or Artist?</label>
                 </div>
-                <select name="" id="" className="form-control">
-                  <option value="" selected>
-                    Client
-                  </option>
-                  <option value="">Artist</option>
+                <select
+                  className="form-control"
+                  name="usertype"
+                  // value={this.state.usertype}
+                  onChange={this.onChange}
+                  placeholder="Are you a Client or Artist?"
+                >
+                  <option value="client">Client</option>
+                  <option value="artist">Artist</option>
                 </select>
               </div>
             </div>

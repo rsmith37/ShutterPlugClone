@@ -10,12 +10,17 @@ module.exports = function validateRegisterInput(data) {
   data.firstName = !isEmpty(data.firstName) ? data.firstName : "";
   data.lastName = !isEmpty(data.lastName) ? data.lastName : "";
   data.username = !isEmpty(data.username) ? data.username : "";
+  data.usertype = !isEmpty(data.usertype) ? data.usertype : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
 
   if (!Validator.isLength(data.firstName, { min: 2, max: 30 })) {
     errors.firstName = "First name must be between 2 and 30 characters";
+  }
+
+  if (Validator.isEmpty(data.usertype)) {
+    errors.usertype = "User type (client or artist) is required";
   }
 
   if (Validator.isEmpty(data.firstName)) {

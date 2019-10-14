@@ -20,6 +20,10 @@ const UserSchema = new schema({
   password: {
     type: String,
     required: true
+  },
+  usertype: {
+    type: String,
+    required: true
   }
 });
 

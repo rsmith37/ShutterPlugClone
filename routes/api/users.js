@@ -51,6 +51,7 @@ router.post("/register", (req, res) => {
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           username: req.body.username,
+          usertype: req.body.usertype,
           email: req.body.email,
           password: req.body.password
         });
@@ -115,7 +116,8 @@ router.post("/login", (req, res) => {
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
-          username: user.username
+          username: user.username,
+          usertype: req.body.usertype
         };
 
         //Sign token - jwt takes in multiple things:
@@ -156,6 +158,7 @@ router.get(
     res.json({
       id: req.user.id,
       username: req.user.username,
+      usertype: req.body.usertype,
       firstName: req.user.firstName,
       lastName: req.user.lastName,
       email: req.user.email
