@@ -14,16 +14,23 @@ class Header extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      // <ul className="navbar-nav ml-auto">
-      <li className="nav-link">
-        <button
-          className="btn btn-secondary btn-lg"
-          onClick={this.onLogoutClick.bind(this)}
-        >
-          Logout: {user.firstName} {user.lastName}
-        </button>
-      </li>
-      // {/* </ul> */}
+      <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+          <Link to="/profile/createArtist" className="nav-link">
+            <button className="btn btn-secondary btn-lg">
+              Create Artist Profile
+            </button>
+          </Link>
+        </li>
+        <li className="nav-link">
+          <button
+            className="btn btn-secondary btn-lg"
+            onClick={this.onLogoutClick.bind(this)}
+          >
+            Logout: {user.firstName} {user.lastName}
+          </button>
+        </li>
+      </ul>
     );
 
     const guestLinks = (
@@ -68,20 +75,6 @@ class Header extends Component {
                   <Link to="/exampleSearch" className="nav-link">
                     <button className="btn btn-secondary btn-lg">
                       Example Search Results
-                    </button>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/profile/createClient" className="nav-link">
-                    <button className="btn btn-secondary btn-lg">
-                      Create Client Profile
-                    </button>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/profile/createArtist" className="nav-link">
-                    <button className="btn btn-secondary btn-lg">
-                      Create Artist Profile
                     </button>
                   </Link>
                 </li>
