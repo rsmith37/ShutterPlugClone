@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { loginUser } from "../../actions/authActions";
+import { loginUser, logoutUser } from "../../actions/authActions";
 
 class Login extends Component {
   constructor() {
@@ -21,6 +21,12 @@ class Login extends Component {
   onChange(e) {
     // This sets the state for whatever input field the user is currently typing in
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
   }
 
   componentWillReceiveProps(nextProps) {
