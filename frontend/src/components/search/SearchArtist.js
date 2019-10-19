@@ -1,46 +1,17 @@
 import React, { Component } from "react";
 import Select from "react-select";
 
-const specializationArray = [
-  {
-    value: "studioPortraits",
-    label: "Studio Portraits"
-  },
-  {
-    value: "outsidePortraits",
-    label: "Outside Portraits"
-  },
-  {
-    value: "engagements",
-    label: "Engagements"
-  },
-  {
-    value: "weddings",
-    label: "Weddings"
-  },
-  {
-    value: "drones",
-    label: "Drones"
-  }
-];
-
-const certificationsArray = [
-  {
-    value: "",
-    label: ""
-  }
-];
-
 class SearchArtist extends Component {
   constructor() {
     super();
     this.state = {
+      username: "",
       selectedOption: null,
       selectedDistance: null,
       selectedCertification: null,
-      name: "",
-      location: "",
-      radius: "",
+      firstName: "",
+      lastName: "",
+      zipcode: "",
       specialization: "",
       experience: "",
       certifications: "",
@@ -251,9 +222,9 @@ class SearchArtist extends Component {
   }
 
   render() {
-    const { selectedOption } = this.state;
-    const { selectedDistance } = this.state;
-    const { selectedCertification } = this.state;
+    // const { selectedOption } = this.state;
+    // const { selectedDistance } = this.state;
+    // const { selectedCertification } = this.state;
 
     return (
       <div className="card mb-3">
@@ -268,7 +239,10 @@ class SearchArtist extends Component {
                   <label htmlFor="">First Name</label>
                 </div>
                 <input
+                  name="firstName"
                   type="text"
+                  value={this.state.firstName}
+                  onChange={this.onChange}
                   className="form-control"
                   placeholder="Enter first name..."
                 />
@@ -279,9 +253,28 @@ class SearchArtist extends Component {
                   <label htmlFor="">Last Name</label>
                 </div>
                 <input
+                  name="lastName"
                   type="text"
+                  value={this.state.lastName}
+                  onChange={this.onChange}
                   className="form-control"
                   placeholder="Enter last name..."
+                />
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <div className="form-row">
+                  <i className="far fa-user px-2"></i>
+                  <label htmlFor="">Username</label>
+                </div>
+                <input
+                  name="username"
+                  type="text"
+                  value={this.state.username}
+                  onChange={this.onChange}
+                  className="form-control"
+                  placeholder="Search by username"
                 />
               </div>
             </div>
@@ -294,7 +287,10 @@ class SearchArtist extends Component {
                   <label htmlFor="">Zip Code</label>
                 </div>
                 <input
+                  name="zipcode"
                   type="text"
+                  value={this.state.zipcode}
+                  onChange={this.onChange}
                   className="form-control"
                   placeholder="Enter zip code..."
                 />
@@ -309,7 +305,7 @@ class SearchArtist extends Component {
                   className="basic-select"
                   isSearchable
                   name="selectedDistance"
-                  value={selectedDistance}
+                  value={this.state.selectedDistance}
                   onChange={this.handleSelectChange("selectedDistance")}
                   options={this.state.distanceArray}
                 />
@@ -328,7 +324,7 @@ class SearchArtist extends Component {
                 className="basic-multi-select"
                 isMulti
                 isSearchable
-                value={selectedCertification}
+                value={this.state.selectedCertification}
                 onChange={this.handleSelectChange("selectedCertification")}
                 options={this.state.certificationArray}
               />
@@ -343,8 +339,8 @@ class SearchArtist extends Component {
                 className="basic-multi-select"
                 isMulti
                 isSearchable
-                value={selectedOption}
-                onChange={this.handleSelectChange("selectedOption")}
+                value={this.state.selectedSpecialization}
+                onChange={this.handleSelectChange("selectedSpecialization")}
                 options={this.state.specializationArray}
               />
             </div>
