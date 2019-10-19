@@ -11,19 +11,19 @@ const ProfileSchema = new schema({
     type: String,
     max: 40
   },
-  location: {
+  city: {
+    type: String
+  },
+  state: {
+    type: String
+  },
+  zipcode: {
     type: String
   },
   phone: {
     type: String
   },
-  specializations: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "specializations"
-    }
-  ],
-  website: {
+  distance: {
     type: String
   },
   priceRange: {
@@ -31,23 +31,27 @@ const ProfileSchema = new schema({
   },
   certifications: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "cert"
+      type: String
     }
   ],
-  youtube: {
-    type: String
-  },
-  twitter: {
-    type: String
-  },
-  facebook: {
+  specializations: [
+    {
+      type: String
+    }
+  ],
+  biography: {
     type: String
   },
   instagram: {
     type: String
   },
-  linkedin: {
+  facebook: {
+    type: String
+  },
+  twitter: {
+    type: String
+  },
+  website: {
     type: String
   }
 });

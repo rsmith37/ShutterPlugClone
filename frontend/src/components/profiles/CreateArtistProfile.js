@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
-import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
-
-const specializationArray = [];
 
 class CreateArtistProfile extends Component {
   constructor() {
@@ -13,6 +8,7 @@ class CreateArtistProfile extends Component {
     this.state = {
       selectedOption: null,
       selectedDistance: null,
+      selectedCertification: null,
       name: "",
       location: "",
       radius: "",
@@ -23,6 +19,48 @@ class CreateArtistProfile extends Component {
       instagram: "",
       facebook: "",
       twitter: "",
+      certificationArray: [
+        {
+          value: "color",
+          label: "Color Photography Certification"
+        },
+        {
+          value: "commericial",
+          label: "Commercial Photography Certification"
+        },
+        {
+          value: "digitalEdit",
+          label: "Digital Editing Certification"
+        },
+        {
+          value: "digitalImage",
+          label: "Digital Imaging Certification"
+        },
+        {
+          value: "masterArtist",
+          label: "Master Artist"
+        },
+        {
+          value: "masterPhoto",
+          label: "Master of Photography"
+        },
+        {
+          value: "masterWedding",
+          label: "Master of Wedding Photography"
+        },
+        {
+          value: "photoCraft",
+          label: "Photographic Craftsman"
+        },
+        {
+          value: "portraiture",
+          label: "Portraiture"
+        },
+        {
+          value: "studioLight",
+          label: "Studio Lighting"
+        }
+      ],
       specializationArray: [
         {
           value: "architecture",
@@ -186,6 +224,7 @@ class CreateArtistProfile extends Component {
   render() {
     const { selectedOption } = this.state;
     const { selectedDistance } = this.state;
+    const { selectedCertification } = this.state;
     return (
       <div className="card mb-3">
         <h1 className="card-header">Create Artist Profile</h1>
@@ -253,6 +292,17 @@ class CreateArtistProfile extends Component {
               </div>
               <div className="form-group col-md-6">
                 <div className="form-row">
+                  <i className="fas fa-map-marked px-2"></i>
+                  <label htmlFor="">Phone Number</label>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Phone number"
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <div className="form-row">
                   <i className="fas fa-car px-2"></i>
                   <label htmlFor="">Distance willing to travel</label>
                 </div>
@@ -269,8 +319,23 @@ class CreateArtistProfile extends Component {
             </div>
 
             <br />
-            <h3>Specializations and Biography:</h3>
+            <h3>Certifcations, Specializations, Biography:</h3>
             <div className="form-group">
+              <div className="form-row">
+                <i className="fas fa-camera px-2"></i>
+                <label htmlFor="">Certification(s)</label>
+              </div>
+              <Select
+                placeholder="Select one or more..."
+                name="selectedCertification"
+                className="basic-multi-select"
+                isMulti
+                isSearchable
+                value={selectedCertification}
+                onChange={this.handleSelectChange("selectedCertification")}
+                options={this.state.certificationArray}
+              />
+              <br />
               <div className="form-row">
                 <i className="fas fa-camera px-2"></i>
                 <label htmlFor="">Specialization(s)</label>
@@ -286,7 +351,7 @@ class CreateArtistProfile extends Component {
                 options={this.state.specializationArray}
               />
             </div>
-            <br />
+
             <div className="form-row">
               <div className="form-group col-md-12">
                 <div className="form-row">
@@ -332,8 +397,8 @@ class CreateArtistProfile extends Component {
 
               <div className="form-group col-md-6">
                 <div className="form-row">
-                  <i className="fab fa-linkedin px-2"></i>
-                  <label htmlFor="">LinkedIn:</label>
+                  <i className="fas fa-link px-2"></i>
+                  <label htmlFor="">Personal Website:</label>
                 </div>
                 <input type="text" className="form-control" placeholder="" />
               </div>
