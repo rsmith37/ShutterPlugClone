@@ -42,14 +42,16 @@ const ProfileSchema = new schema({
   biography: {
     type: String
   },
-  instagram: {
-    type: String
-  },
-  facebook: {
-    type: String
-  },
-  twitter: {
-    type: String
+  socialMedia: {
+    instagram: {
+      type: String
+    },
+    facebook: {
+      type: String
+    },
+    twitter: {
+      type: String
+    }
   },
   website: {
     type: String
