@@ -1,6 +1,8 @@
 .body {
-    background-image: url("../../assets/shutterplugbg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: black;
     color: whitesmoke;
+}
+
+.sPLogo {
+    height: 100px;
 }

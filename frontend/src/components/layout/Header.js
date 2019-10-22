@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import "./CustomHome.css";
          
 class Header extends Component {
   onLogoutClick(e) {
@@ -54,11 +55,14 @@ class Header extends Component {
           <div className="container-fluid">
             <div className="img-responsive">
               <img
+                className="sPLogo rounded"
                 src={require("../../assets/shutter_plug_logo.png")}
                 alt="Shutter Plug Logo"
               />
+            </div>
+            <div>
+              <h1 className="text-white">Shutter Plug</h1>
             </div>  
-            <h1 className="text-white">Shutter Plug</h1>
             <div>
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
