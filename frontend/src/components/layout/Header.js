@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-
+import "./CustomHome.css";
+         
 class Header extends Component {
   onLogoutClick(e) {
     e.preventDefault();
@@ -50,15 +51,18 @@ class Header extends Component {
 
     return (
       <div style={{ backgroundColor: "black" }}>
-        <div className="img-responsive">
-          <img
-            src={require("../../assets/shutter_plug_logo.png")}
-            alt="Shutter Plug Logo"
-          />
-        </div>
         <nav className="navbar sticky-top navbar-expand-sm mb-3 py-0">
           <div className="container-fluid">
-            <h1 className="text-white">Shutter Plug</h1>
+            <div className="img-responsive">
+              <img
+                className="sPLogo rounded"
+                src={require("../../assets/shutter_plug_logo.png")}
+                alt="Shutter Plug Logo"
+              />
+            </div>
+            <div>
+              <h1 className="text-white">Shutter Plug</h1>
+            </div>  
             <div>
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
