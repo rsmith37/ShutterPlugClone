@@ -1,16 +1,25 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { createProfile } from "../../actions/profileActions";
+import classnames from "classnames";
 
 class CreateArtistProfile extends Component {
   constructor() {
     super();
     this.state = {
-      selectedOption: null,
+      selectedSpecializations: null,
       selectedDistance: null,
-      selectedCertification: null,
-      name: "",
-      location: "",
+      selectedCertifications: null,
+      firstName: "",
+      lastName: "",
+      city: "",
+      state: "",
+      zip: "",
+      phoneNumber: "",
       radius: "",
       specialization: "",
       experience: "",
@@ -19,6 +28,7 @@ class CreateArtistProfile extends Component {
       instagram: "",
       facebook: "",
       twitter: "",
+      website: "",
       certificationArray: [
         {
           value: "color",
@@ -201,6 +211,12 @@ class CreateArtistProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onChange(e) {
     // This sets the state for whatever input field the user is currently typing in
     this.setState({ [e.target.name]: e.target.value });
@@ -211,20 +227,34 @@ class CreateArtistProfile extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    // const newUser = {
-    //   firstName: this.state.firstName,
-    //   lastName: this.state.lastName,
-    //   email: this.state.email,
-    //   username: this.state.username,
-    //   usertype: this.state.usertype,
-    //   password: this.state.password,
-    //   password2: this.state.password2
+    const profileData = {
+      selectedSpecializations: this.state.selectedSpecializations,
+      selectedDistance: this.state.selectedDistance,
+      selectedCertifications: this.state.selectedCertifications,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      city: this.state.city,
+      state: this.state.state,
+      zip: this.state.zip,
+      phoneNumber: this.state.phoneNumber,
+      radius: this.state.radius,
+      specialization: this.state.specialization,
+      experience: this.state.experience,
+      certifications: this.state.certifications,
+      bio: this.state.bio,
+      instagram: this.state.instagram,
+      facebook: this.state.facebook,
+      twitter: this.state.twitter,
+      website: this.state.website
+    };
+    this.props.createProfile(profileData, this.props.history);
   }
 
   render() {
-    const { selectedOption } = this.state;
+    const { selectedSpecializations } = this.state;
     const { selectedDistance } = this.state;
-    const { selectedCertification } = this.state;
+    const { selectedCertifications } = this.state;
+    const { errors } = this.state;
     return (
       <div className="card mb-3">
         <h1 className="card-header">Create Artist Profile</h1>
@@ -239,8 +269,13 @@ class CreateArtistProfile extends Component {
                 </div>
                 <input
                   type="text"
-                  className="form-control"
+                  className={classnames("form-control", {
+                    "is-invalid": errors.firstName
+                  })}
+                  name="firstName"
                   placeholder="Please enter your first name"
+                  value={this.state.firstName}
+                  onChange={this.onChange}
                 />
               </div>
               <div className="form-group col-md-6">
@@ -249,9 +284,14 @@ class CreateArtistProfile extends Component {
                   <label htmlFor="">Last Name</label>
                 </div>
                 <input
+                  name="lastName"
                   type="text"
-                  className="form-control"
+                  className={classnames("form-control", {
+                    "is-invalid": errors.lastName
+                  })}
                   placeholder="Please enter your last name"
+                  value={this.state.lastName}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -264,8 +304,13 @@ class CreateArtistProfile extends Component {
                 </div>
                 <input
                   type="text"
-                  className="form-control"
+                  name="city"
+                  className={classnames("form-control", {
+                    "is-invalid": errors.city
+                  })}
                   placeholder="City"
+                  value={this.state.city}
+                  onChange={this.onChange}
                 />
               </div>
               <div className="form-group col-md-4">
@@ -275,8 +320,13 @@ class CreateArtistProfile extends Component {
                 </div>
                 <input
                   type="text"
-                  className="form-control"
+                  className={classnames("form-control", {
+                    "is-invalid": errors.state
+                  })}
+                  name="state"
                   placeholder="State"
+                  value={this.state.state}
+                  onChange={this.onChange}
                 />
               </div>
               <div className="form-group col-md-4">
@@ -286,8 +336,13 @@ class CreateArtistProfile extends Component {
                 </div>
                 <input
                   type="text"
-                  className="form-control"
+                  className={classnames("form-control", {
+                    "is-invalid": errors.zip
+                  })}
+                  name="zip"
                   placeholder="Enter zip code"
+                  value={this.state.zip}
+                  onChange={this.onChange}
                 />
               </div>
               <div className="form-group col-md-6">
@@ -297,8 +352,13 @@ class CreateArtistProfile extends Component {
                 </div>
                 <input
                   type="text"
-                  className="form-control"
+                  name="phoneNumber"
+                  className={classnames("form-control", {
+                    "is-invalid": errors.phoneNumber
+                  })}
                   placeholder="Phone number"
+                  value={this.state.phoneNumber}
+                  onChange={this.onChange}
                 />
               </div>
               <div className="form-group col-md-6">
@@ -319,7 +379,7 @@ class CreateArtistProfile extends Component {
             </div>
 
             <br />
-            <h3>Certifcations, Specializations, Biography:</h3>
+            <h3>Certifications, Specializations, Biography:</h3>
             <div className="form-group">
               <div className="form-row">
                 <i className="fas fa-camera px-2"></i>
@@ -327,12 +387,12 @@ class CreateArtistProfile extends Component {
               </div>
               <Select
                 placeholder="Select one or more..."
-                name="selectedCertification"
+                name="selectedCertifications"
                 className="basic-multi-select"
                 isMulti
                 isSearchable
-                value={selectedCertification}
-                onChange={this.handleSelectChange("selectedCertification")}
+                value={selectedCertifications}
+                onChange={this.handleSelectChange("selectedCertifications")}
                 options={this.state.certificationArray}
               />
               <br />
@@ -342,12 +402,12 @@ class CreateArtistProfile extends Component {
               </div>
               <Select
                 placeholder="Select one or more..."
-                name="selectedOption"
+                name="selectedSpecializations"
                 className="basic-multi-select"
                 isMulti
                 isSearchable
-                value={selectedOption}
-                onChange={this.handleSelectChange("selectedOption")}
+                value={selectedSpecializations}
+                onChange={this.handleSelectChange("selectedSpecializations")}
                 options={this.state.specializationArray}
               />
             </div>
@@ -359,9 +419,12 @@ class CreateArtistProfile extends Component {
                   <label htmlFor="">Short biography:</label>
                   <input
                     type="textarea"
-                    className="form-control"
+                    name="bio"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.bio})}
                     placeholder="Tell us about yourself"
-                    rows="10"
+                    value={this.state.bio}
+                  onChange={this.onChange}
                   />
                 </div>
               </div>
@@ -374,7 +437,13 @@ class CreateArtistProfile extends Component {
                   <i className="fab fa-instagram px-2"></i>
                   <label htmlFor="">Instagram:</label>
                 </div>
-                <input type="text" className="form-control" placeholder="" />
+                <input type="text" 
+                name="instagram"
+                className="form-control" 
+                placeholder=""
+                value={this.state.instagram}
+                onChange={this.onChange} 
+                />
               </div>
 
               <div className="form-group col-md-6">
@@ -382,7 +451,13 @@ class CreateArtistProfile extends Component {
                   <i className="fab fa-facebook-square px-2"></i>
                   <label htmlFor="">Facebook:</label>
                 </div>
-                <input type="text" className="form-control" placeholder="" />
+                <input type="text" 
+                className="form-control" 
+                placeholder="" 
+                name="facebook"
+                value={this.state.facebook}
+                onChange={this.onChange} 
+                />
               </div>
             </div>
             <br />
@@ -392,7 +467,13 @@ class CreateArtistProfile extends Component {
                   <i className="fab fa-twitter px-2"></i>
                   <label htmlFor="">Twitter:</label>
                 </div>
-                <input type="text" className="form-control" placeholder="" />
+                <input type="text" 
+                className="form-control" 
+                placeholder="" 
+                name="twitter"
+                value={this.state.twitter}
+                onChange={this.onChange} 
+                />
               </div>
 
               <div className="form-group col-md-6">
@@ -400,7 +481,13 @@ class CreateArtistProfile extends Component {
                   <i className="fas fa-link px-2"></i>
                   <label htmlFor="">Personal Website:</label>
                 </div>
-                <input type="text" className="form-control" placeholder="" />
+                <input type="text" 
+                className="form-control" 
+                placeholder="" 
+                name="website"
+                value={this.state.website}
+                onChange={this.onChange} 
+                />
               </div>
             </div>
             <br />
@@ -417,4 +504,17 @@ class CreateArtistProfile extends Component {
   }
 }
 
-export default CreateArtistProfile;
+CreateArtistProfile.propTypes = {
+  profile: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(withRouter(CreateArtistProfile));

@@ -17,9 +17,9 @@ class Header extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link to="/profile/createArtist" className="nav-link">
+          <Link to="/dashboard" className="nav-link">
             <button className="btn btn-secondary btn-lg">
-              Create Artist Profile
+              User Dashboard
             </button>
           </Link>
         </li>

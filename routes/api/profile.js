@@ -125,28 +125,31 @@ router.post(
     // Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (req.body.handle) profileFields.handle = req.body.handle;
-    if (req.body.location) profileFields.location = req.body.location;
-    if (req.body.phone) profileFields.phone = req.body.phone;
-    if (typeof req.body.specializations !== "undefined") {
-      profileFields.specializations = req.body.specializations.split(",");
+    if (req.body.firstName) profileFields.firstName = req.body.firstName;
+    if (req.body.lastName) profileFields.lastName = req.body.lastName;
+    if (req.body.city) profileFields.city = req.body.city;
+    if (req.body.state) profileFields.state = req.body.state;
+    if (req.body.zip) profileFields.zip = req.body.zip;
+    if (req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber;
+    if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
+    if (typeof req.body.selectedCertifications !== "undefined") {
+      profileFields.selectedCertifications = req.body.selectedCertifications.split(",");
     }
+    // if (req.body.selectedCertifications) profileFields.selectedCertifications = req.body.selectedCertifications;
+    // if (req.body.selectedSpecializations) profileFields.selectedSpecializations = req.body.selectedSpecializations;
+    if (typeof req.body.selectedSpecializations !== "undefined") {
+      profileFields.selectedSpecializations = req.body.selectedSpecializations.split(",");
+    }
+    if (req.body.bio) profileFields.bio = req.body.bio;
     if (req.body.website) profileFields.website = req.body.website;
-    if (req.body.priceRange) profileFields.priceRange = req.body.priceRange;
-    if (typeof req.body.certifications !== "undefined") {
-      profileFields.certifications = req.body.certifications.split(",");
-    }
-
+    
     // Social media
     profileFields.socialMedia = {};
-    if (req.body.youtube) profileFields.socialMedia.youtube = req.body.youtube;
     if (req.body.twitter) profileFields.socialMedia.twitter = req.body.twitter;
     if (req.body.facebook)
       profileFields.socialMedia.facebook = req.body.facebook;
     if (req.body.instagram)
       profileFields.socialMedia.instagram = req.body.instagram;
-    if (req.body.linkedin)
-      profileFields.socialMedia.linkedin = req.body.linkedin;
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {

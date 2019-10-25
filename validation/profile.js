@@ -14,6 +14,34 @@ module.exports = function validateProfileInput(data) {
   //   errors.handle = "Profile handle is required";
   // }
 
+  if (Validator.isEmpty(data.firstName)) {
+    errors.email = "First name is required";
+  }
+
+  if (Validator.isEmpty(data.lastName)) {
+    errors.email = "Last name is required";
+  }
+
+  if (Validator.isEmpty(data.city)) {
+    errors.email = "City is required";
+  }
+
+  if (Validator.isEmpty(data.state)) {
+    errors.email = "State is required";
+  }
+
+  if (Validator.isEmpty(data.zip)) {
+    errors.email = "Zip code is required";
+  }
+
+  if (Validator.isEmpty(data.phoneNumber)) {
+    errors.email = "Phone number is required";
+  }
+
+  if (Validator.isEmpty(data.bio)) {
+    errors.email = "Short biography is required";
+  }
+
   if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {
       errors.website = "Not a valid URL";

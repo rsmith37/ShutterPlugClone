@@ -16,6 +16,8 @@ import Register from "./components/profiles/Register";
 import Login from "./components/profiles/Login";
 import Footer from "./components/layout/Footer";
 import Home from "./components/layout/Home";
+import Dashboard from "./components/layout/Dashboard";
+import PrivateRoute from "./components/common/PrivateRoute";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -49,11 +51,16 @@ const App = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/search" component={SearchArtist} />
               <Route exact path="/exampleSearch" component={ArtistCard} />
-              <Route
+              {/* <Switch> */}
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            {/* </Switch> */}
+              {/* <Switch> */}
+              <PrivateRoute
                 exact
                 path="/profile/createArtist"
                 component={CreateArtistProfile}
               />
+              {/* </Switch> */}
             </Switch>
           </div>
           <Footer />
