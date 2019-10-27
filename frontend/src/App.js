@@ -45,23 +45,21 @@ const App = () => {
         <div className="App">
           <Header />
           <div className="container">
-            <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/search" component={SearchArtist} />
               <Route exact path="/exampleSearch" component={ArtistCard} />
-              {/* <Switch> */}
+              <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            {/* </Switch> */}
-              {/* <Switch> */}
+            </Switch>
+              <Switch>
               <PrivateRoute
                 exact
                 path="/profile/createArtist"
                 component={CreateArtistProfile}
               />
-              {/* </Switch> */}
-            </Switch>
+              </Switch>
           </div>
           <Footer />
         </div>

@@ -15,31 +15,31 @@ module.exports = function validateProfileInput(data) {
   // }
 
   if (Validator.isEmpty(data.firstName)) {
-    errors.email = "First name is required";
+    errors.firstName = "First name is required";
   }
 
   if (Validator.isEmpty(data.lastName)) {
-    errors.email = "Last name is required";
+    errors.lastName = "Last name is required";
   }
 
   if (Validator.isEmpty(data.city)) {
-    errors.email = "City is required";
+    errors.city = "City is required";
   }
 
   if (Validator.isEmpty(data.state)) {
-    errors.email = "State is required";
+    errors.state = "State is required";
   }
 
   if (Validator.isEmpty(data.zip)) {
-    errors.email = "Zip code is required";
+    errors.zip = "Zip code is required";
   }
 
   if (Validator.isEmpty(data.phoneNumber)) {
-    errors.email = "Phone number is required";
+    errors.phoneNumber = "Phone number is required";
   }
 
   if (Validator.isEmpty(data.bio)) {
-    errors.email = "Short biography is required";
+    errors.bio = "Short biography is required";
   }
 
   if (!isEmpty(data.website)) {

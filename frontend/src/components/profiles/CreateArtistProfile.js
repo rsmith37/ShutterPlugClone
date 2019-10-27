@@ -8,12 +8,12 @@ import { createProfile } from "../../actions/profileActions";
 import classnames from "classnames";
 
 class CreateArtistProfile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      selectedSpecializations: null,
-      selectedDistance: null,
-      selectedCertifications: null,
+      selectedSpecializations: {},
+      selectedDistance: {},
+      selectedCertifications: {},
       firstName: "",
       lastName: "",
       city: "",
@@ -259,7 +259,7 @@ class CreateArtistProfile extends Component {
       <div className="card mb-3">
         <h1 className="card-header">Create Artist Profile</h1>
         <div className="card-body text-left">
-          <form>
+          <form onSubmit={this.onSubmit}>
             <h3>Artist Info:</h3>
             <div className="form-row">
               <div className="form-group col-md-6">
@@ -277,6 +277,9 @@ class CreateArtistProfile extends Component {
                   value={this.state.firstName}
                   onChange={this.onChange}
                 />
+                {errors.firstName && (
+                  <div className="invalid-feedback">{errors.firstName}</div>
+                )}
               </div>
               <div className="form-group col-md-6">
                 <div className="form-row">
@@ -293,6 +296,9 @@ class CreateArtistProfile extends Component {
                   value={this.state.lastName}
                   onChange={this.onChange}
                 />
+                {errors.lastName && (
+                  <div className="invalid-feedback">{errors.lastName}</div>
+                )}
               </div>
             </div>
             <br />
@@ -312,6 +318,9 @@ class CreateArtistProfile extends Component {
                   value={this.state.city}
                   onChange={this.onChange}
                 />
+                {errors.city && (
+                  <div className="invalid-feedback">{errors.city}</div>
+                )}
               </div>
               <div className="form-group col-md-4">
                 <div className="form-row">
@@ -328,6 +337,9 @@ class CreateArtistProfile extends Component {
                   value={this.state.state}
                   onChange={this.onChange}
                 />
+                {errors.state && (
+                  <div className="invalid-feedback">{errors.state}</div>
+                )}
               </div>
               <div className="form-group col-md-4">
                 <div className="form-row">
@@ -344,6 +356,9 @@ class CreateArtistProfile extends Component {
                   value={this.state.zip}
                   onChange={this.onChange}
                 />
+                {errors.zip && (
+                  <div className="invalid-feedback">{errors.zip}</div>
+                )}
               </div>
               <div className="form-group col-md-6">
                 <div className="form-row">
@@ -360,6 +375,9 @@ class CreateArtistProfile extends Component {
                   value={this.state.phoneNumber}
                   onChange={this.onChange}
                 />
+                {errors.phoneNumber && (
+                  <div className="invalid-feedback">{errors.phoneNumber}</div>
+                )}
               </div>
               <div className="form-group col-md-6">
                 <div className="form-row">
@@ -371,10 +389,13 @@ class CreateArtistProfile extends Component {
                   className="basic-select"
                   isSearchable
                   name="selectedDistance"
-                  value={selectedDistance}
+                  value={this.state.selectedDistance}
                   onChange={this.handleSelectChange("selectedDistance")}
                   options={this.state.distanceArray}
                 />
+                {errors.distance && (
+                  <div className="invalid-feedback">{errors.distance}</div>
+                )}
               </div>
             </div>
 
@@ -391,7 +412,7 @@ class CreateArtistProfile extends Component {
                 className="basic-multi-select"
                 isMulti
                 isSearchable
-                value={selectedCertifications}
+                value={this.state.selectedCertifications}
                 onChange={this.handleSelectChange("selectedCertifications")}
                 options={this.state.certificationArray}
               />
@@ -406,7 +427,7 @@ class CreateArtistProfile extends Component {
                 className="basic-multi-select"
                 isMulti
                 isSearchable
-                value={selectedSpecializations}
+                value={this.state.selectedSpecializations}
                 onChange={this.handleSelectChange("selectedSpecializations")}
                 options={this.state.specializationArray}
               />
@@ -426,6 +447,9 @@ class CreateArtistProfile extends Component {
                     value={this.state.bio}
                   onChange={this.onChange}
                   />
+                  {errors.bio && (
+                  <div className="invalid-feedback">{errors.bio}</div>
+                )}
                 </div>
               </div>
             </div>
@@ -440,7 +464,6 @@ class CreateArtistProfile extends Component {
                 <input type="text" 
                 name="instagram"
                 className="form-control" 
-                placeholder=""
                 value={this.state.instagram}
                 onChange={this.onChange} 
                 />
