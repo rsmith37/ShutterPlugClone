@@ -133,12 +133,16 @@ router.post(
     if (req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber;
     if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
     if (typeof req.body.selectedCertifications !== "undefined") {
-      profileFields.selectedCertifications = req.body.selectedCertifications.split(",");
+      profileFields.selectedCertifications = []; 
+      req.body.selectedCertifications.map(element => {
+        profileFields.selectedCertifications.push(element.value);
+      })
     }
-    // if (req.body.selectedCertifications) profileFields.selectedCertifications = req.body.selectedCertifications;
-    // if (req.body.selectedSpecializations) profileFields.selectedSpecializations = req.body.selectedSpecializations;
     if (typeof req.body.selectedSpecializations !== "undefined") {
-      profileFields.selectedSpecializations = req.body.selectedSpecializations.split(",");
+      profileFields.selectedSpecializations = []; 
+      req.body.selectedSpecializations.map(element => {
+        profileFields.selectedSpecializations.push(element.value);
+      })
     }
     if (req.body.bio) profileFields.bio = req.body.bio;
     if (req.body.website) profileFields.website = req.body.website;

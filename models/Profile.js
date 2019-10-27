@@ -11,35 +11,38 @@ const ProfileSchema = new schema({
     type: String,
     max: 40
   },
+  firstName: {
+    type: String
+  },
+  lastName: {
+    type: String
+  },
   city: {
     type: String
   },
   state: {
     type: String
   },
-  zipcode: {
+  zip: {
     type: String
   },
-  phone: {
+  phoneNumber: {
     type: String
   },
-  distance: {
+  selectedDistance: {
     type: String
   },
-  priceRange: {
-    type: String
-  },
-  certifications: [
+  selectedCertifications: [
     {
       type: String
     }
   ],
-  specializations: [
+  selectedSpecializations: [
     {
       type: String
     }
   ],
-  biography: {
+  bio: {
     type: String
   },
   socialMedia: {

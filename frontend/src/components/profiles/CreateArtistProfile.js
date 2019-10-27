@@ -11,9 +11,9 @@ class CreateArtistProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedSpecializations: {},
-      selectedDistance: {},
-      selectedCertifications: {},
+      selectedSpecializations: null,
+      selectedDistance: null,
+      selectedCertifications: null,
       firstName: "",
       lastName: "",
       city: "",
@@ -31,175 +31,175 @@ class CreateArtistProfile extends Component {
       website: "",
       certificationArray: [
         {
-          value: "color",
+          value: "Color Photography Certification",
           label: "Color Photography Certification"
         },
         {
-          value: "commericial",
+          value: "Commercial Photography Certification",
           label: "Commercial Photography Certification"
         },
         {
-          value: "digitalEdit",
+          value: "Digital Editing Certification",
           label: "Digital Editing Certification"
         },
         {
-          value: "digitalImage",
+          value: "Digital Imaging Certification",
           label: "Digital Imaging Certification"
         },
         {
-          value: "masterArtist",
+          value: "Master Artist",
           label: "Master Artist"
         },
         {
-          value: "masterPhoto",
+          value: "Master of Photography",
           label: "Master of Photography"
         },
         {
-          value: "masterWedding",
+          value: "Master of Wedding Photography",
           label: "Master of Wedding Photography"
         },
         {
-          value: "photoCraft",
+          value: "Photographic Craftsman",
           label: "Photographic Craftsman"
         },
         {
-          value: "portraiture",
+          value: "Portraiture",
           label: "Portraiture"
         },
         {
-          value: "studioLight",
+          value: "Studio Lighting",
           label: "Studio Lighting"
         }
       ],
       specializationArray: [
         {
-          value: "architecture",
+          value: "Architecture",
           label: "Architecture"
         },
         {
-          value: "auto",
+          value: "Automotive",
           label: "Automotive"
         },
         {
-          value: "baby",
+          value: "Baby Portraits",
           label: "Baby Portraits"
         },
         {
-          value: "bachParty",
+          value: "Bachelor Parties",
           label: "Bachelor Parties"
         },
         {
-          value: "drone",
+          value: "Drone",
           label: "Drone"
         },
         {
-          value: "engagement",
+          value: "Engagement",
           label: "Engagement"
         },
         {
-          value: "family",
+          value: "Family",
           label: "Family"
         },
         {
-          value: "fashion",
+          value: "Fashion",
           label: "Fashion"
         },
         {
-          value: "food",
+          value: "Food",
           label: "Food"
         },
         {
-          value: "outside",
+          value: "Nature / Outside",
           label: "Nature / Outside"
         },
         {
-          value: "parties",
+          value: "Parties",
           label: "Parties"
         },
         {
-          value: "pet",
+          value: "Pet",
           label: "Pet"
         },
         {
-          value: "photoEdit",
+          value: "Photo Editing",
           label: "Photo Editing"
         },
         {
-          value: "photoRestore",
+          value: "Photo Restoration",
           label: "Photo Restoration"
         },
         {
-          value: "product",
+          value: "Product Photography",
           label: "Product Photography"
         },
         {
-          value: "prom",
+          value: "Prom",
           label: "Prom"
         },
         {
-          value: "redCarpet",
+          value: "Red Carpet",
           label: "Red Carpet"
         },
         {
-          value: "reunions",
+          value: "Reunions",
           label: "Reunions"
         },
         {
-          value: "sports",
+          value: "Sports",
           label: "Sports"
         },
         {
-          value: "stock",
+          value: "Stock",
           label: "Stock"
         },
         {
-          value: "studio",
+          value: "Studio",
           label: "Studio"
         },
         {
-          value: "blogV",
+          value: "Video Blogging",
           label: "Video Blogging"
         },
         {
-          value: "videoEdit",
+          value: "Video Editing",
           label: "Video Editing"
         },
         {
-          value: "videography",
+          value: "Videography",
           label: "Videography"
         },
         {
-          value: "webContent",
+          value: "Web Content",
           label: "Web Content"
         },
         {
-          value: "wedding",
+          value: "Wedding",
           label: "Wedding"
         }
       ],
       distanceArray: [
         {
-          value: "0mi",
+          value: "0 miles",
           label: "0 miles"
         },
         {
-          value: "5mi",
+          value: "5 miles",
           label: "5 miles"
         },
         {
-          value: "10mi",
+          value: "10 miles",
           label: "10 miles"
         },
         {
-          value: "25mi",
+          value: "25 miles",
           label: "25 miles"
         },
         {
-          value: "50mi",
+          value: "50 miles",
           label: "50 miles"
         },
         {
-          value: "100mi",
+          value: "100 miles",
           label: "100 miles"
         }
       ],
