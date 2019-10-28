@@ -62,7 +62,6 @@ const App = () => {
               />
               </Switch>
               <Route exact path="/contactUs" component={ContactUs} />              
-            </Switch>
           </div>
           <Footer />
         </div>
