@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CustomHome.css";
 import CarouselSP from "./CarouselSP";
+import ContactUs from "./ContactUs";
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 class Home extends Component {
@@ -31,7 +34,7 @@ class Home extends Component {
             <div className="body card mb-3">
                 <div className = "card-header">
                     <h1>
-                         Welcome to ShutterPlug!
+                         Welcome to Shutter Plug!
                     </h1>
                     <p>
                         Let us help you find the professional you are looking for!
@@ -40,7 +43,7 @@ class Home extends Component {
                 <div className = "card-body">
                     <div className = "mt-2"> 
                         <h3 className="font-weight-bolder px-2 text-center">
-                            Why ShutterPlug:
+                            Why Shutter Plug:
                         </h3> 
                         <p className = "px-2 text-center">
                             In the past, photographers have had to rely on word of mouth and paid 
@@ -48,7 +51,7 @@ class Home extends Component {
                             companies had monopolies over the market in their community. In this 
                             new era of technology and social media, photographers have a leg up in 
                             this new market and can use Apps like Instagram and Facebook to launch 
-                            their business, advertise, and gain exposure. ShutterPlug is about helping people 
+                            their business, advertise, and gain exposure. Shutter Plug is about helping people 
                             connect, we create the PLUG for businesses and photographers in the community to 
                             join forces and support each other. With the creation of Shutter Plug we can put 
                             more community photographers on the map therefore creating more competition in the market place.
@@ -78,7 +81,7 @@ class Home extends Component {
                             do they connect to potential clients now that they are no longer my students?
                         </p>
                         <p className = "text-center px-2">
-                            Therefore ShutterPlug was born:
+                            Therefore Shutter Plug was born:
                         </p>
                         <p className = "text-center px-2">
                             It was from the frustrations of my young entrepreneurs and my desperate need to help them as they
@@ -96,6 +99,15 @@ class Home extends Component {
                             ShutterPlug can help all these people connect and create a community of collaboration that Atlanta and
                             the metro area needs!
                         </p>
+                    </div>
+                    <div className="text-center px-2">
+                        <h4>Have questions, offer feedback, or would like to report a bug?</h4>
+                        <Link to="/contactUs">
+                            <button className="btn btn-secondary btn-lg">Contact Us!</button>
+                        </Link>
+                        <Switch>
+                            <Route exact path="/contactUs" component={ContactUs} />    
+                        </Switch>   
                     </div>   
                 </div>           
             </div>
