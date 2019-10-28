@@ -16,6 +16,7 @@ import Register from "./components/profiles/Register";
 import Login from "./components/profiles/Login";
 import Footer from "./components/layout/Footer";
 import Home from "./components/layout/Home";
+import ContactUs from "./components/layout/ContactUs";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -54,6 +55,7 @@ const App = () => {
                 path="/profile/createArtist"
                 component={CreateArtistProfile}
               />
+              <Route exact path="/contactUs" component={ContactUs} />              
             </Switch>
           </div>
           <Footer />
