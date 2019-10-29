@@ -49,11 +49,11 @@ class Header extends Component {
     );
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark mb-3 py-0">
+        <nav className="navbar navbar-expand-lg navbar-dark pt-3 mb-3 py-0">
           <div className="container-fluid">
             <div className="img-responsive">
               <img
-                className="sPLogo rounded "
+                className="sPLogo rounded mr-3"
                 src={require("../../assets/shutter_plug_logo.png")}
                 alt="Shutter Plug Logo"
               />
