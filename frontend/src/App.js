@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Header from "./components/layout/Header";
 import CreateArtistProfile from "./components/profiles/CreateArtistProfile";
+import EditArtistProfile from './components/profiles/EditArtistProfile';
 import SearchArtist from "./components/search/SearchArtist";
 import ArtistCard from "./components/profiles/ArtistCard";
 import Register from "./components/profiles/Register";
@@ -52,14 +53,17 @@ const App = () => {
               <Route exact path="/search" component={SearchArtist} />
               <Route exact path="/exampleSearch" component={ArtistCard} />
               <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
               <Switch>
-              <PrivateRoute
-                exact
-                path="/profile/createArtist"
-                component={CreateArtistProfile}
-              />
+                <PrivateRoute
+                  exact
+                  path="/profile/createArtist"
+                  component={CreateArtistProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/edit-profile" component={EditArtistProfile} />
               </Switch>
               <Route exact path="/contactUs" component={ContactUs} />              
           </div>
