@@ -27,8 +27,7 @@ class Profile extends Component {
               <Link to="/profiles" className="btn btn-light mb-3 float-left">
                 Back To Profiles
               </Link>
-            </div>
-            <div className="col-md-6"></div>
+              </div>
           <div className="card card-body bg-light mb-3">
           <h1 className="text-center text-info">{profile.firstName} {profile.lastName}</h1>
             <hr />
@@ -48,17 +47,17 @@ class Profile extends Component {
             <hr />
             {(isEmpty(profile.selectedCertifications) || !isEmpty(profile.selectedSpecializations)) ? null : (<h3 className="text-center text-info">Certifications and Specializations</h3>)}
               {isEmpty(profile.selectedCertifications) ? null : (<h4 className="text-center text-info">Certifications</h4>)}
-              <div className="row">
-              <div className="d-flex flex-wrap justify-content-center align-items-center">
+              <div className="row align-self-center">
+              <div className="d-flex flex-wrap flex-column">
               {isEmpty(profile.selectedCertifications) ? null : (profile.selectedCertifications.map((certification, index) => (
-                <span key={index} className="badge badge-pill badge-warning mr-1 mb-2">{certification}</span>)))}
+                <h5><span key={index} className="badge badge-primary">{certification}</span></h5>)))}
               </div>
             </div>
-              {isEmpty(profile.selectedCertifications) ? null : (<h4 className="text-center text-info">Specializations</h4>)}
-              <div className="row">
-            <div className="d-flex flex-wrap justify-content-center align-items-center">
-              {isEmpty(profile.selectedCertifications) ? null : (profile.selectedCertifications.map((certification, index) => (
-                <span key={index} className="badge badge-pill badge-warning mr-1 mb-2">{certification}</span>)))}
+              {isEmpty(profile.selectedSpecializations) ? null : (<h4 className="text-center text-info">Specializations</h4>)}
+              <div className="row align-self-center">
+            <div className="d-flex flex-wrap flex-column">
+              {isEmpty(profile.selectedSpecializations) ? null : (profile.selectedSpecializations.map((specialization, index) => (
+                <h5><span key={index} className="badge badge-primary align-self-center">{specialization} </span></h5>)))}
               </div>
             </div>
             <h3 className="text-center text-info">Social Media:</h3>
@@ -98,9 +97,8 @@ class Profile extends Component {
                   >
                     <i className="fab fa-twitter fa-2x"></i>
                   </a>
-                )}
+                )}</div>
                     </div>
-          </div>
           </div>
           </div>
       );
@@ -108,8 +106,8 @@ class Profile extends Component {
     return (
       <div className="profile">
         <div className="container">
-          <div className="row">
-            <div className="col-md-12">{profileContent}</div>
+          <div className="row justify-content-center">
+            {profileContent}
           </div>
         </div>
       </div>

@@ -8,21 +8,14 @@ class ProfileItem extends Component {
     const { profile } = this.props;
 
     return (
-        <section className="search-result-item">
-              {/* <a className="image-link" href="#">
-                <img
-                  className="img-thumbnail"
-                  src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                  
-                />
-              </a> */}
+        <div>{isEmpty(profile.user) ? null : (<section className="search-result-item">
               <div className="search-result-item-body">
                 <div className="row">
                   <div className="col-sm-9">
                     <h4 className="artistName mt-2 mb-1">{profile.firstName} {profile.lastName}</h4>
-                    <p className="locationInfo text-muted font-italic mb-1">Lawrenceville, GA 30043</p>
+                    <p className="locationInfo text-muted font-italic mb-1">{profile.city}, {profile.state} {profile.zip}</p>
                     {isEmpty(profile.selectedSpecializations) ? null : (profile.selectedSpecializations.map((specialization, index) => (
-                <span key={index} className="badge badge-pill badge-warning mr-1 mb-2">{specialization}</span>)))}
+                <span key={index} className="badge badge-pill badge-primary mr-1 mb-2">{specialization}</span>)))}
                   </div>
                   <div className="col-sm-3 text-align-center mt-2">
                   <Link to={`/profile/${profile.user._id}`} className="btn btn-primary btn-info btn-lg">
@@ -69,9 +62,9 @@ class ProfileItem extends Component {
                 </div>
               </div>
             </section>
-    );
-  }
-}
+    )
+  }</div>);
+}}
 
 ProfileItem.propTypes = {
   profile: PropTypes.object.isRequired
