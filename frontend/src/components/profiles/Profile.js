@@ -18,7 +18,7 @@ class Profile extends Component {
     let profileContent;
 
     if (profile === null || loading) {
-      profileContent = <Spinner />;
+      profileContent = <div><h2 className="lead text-white">Loading profile...</h2></div>
     } else {
       profileContent = (
         <div>
@@ -44,7 +44,7 @@ class Profile extends Component {
                 <span>{profile.bio}</span>
               )}
             </p>
-            <hr />
+            {isEmpty(profile.selectedCertifications) ? null : (<hr/>)}
             {(isEmpty(profile.selectedCertifications) || !isEmpty(profile.selectedSpecializations)) ? null : (<h3 className="text-center text-info">Certifications and Specializations</h3>)}
               {isEmpty(profile.selectedCertifications) ? null : (<h4 className="text-center text-info">Certifications</h4>)}
               <div className="row align-self-center">
@@ -53,6 +53,7 @@ class Profile extends Component {
                 <h5><span key={index} className="badge badge-primary">{certification}</span></h5>)))}
               </div>
             </div>
+            {isEmpty(profile.selectedSpecializations) ? null : (<hr/>)}
               {isEmpty(profile.selectedSpecializations) ? null : (<h4 className="text-center text-info">Specializations</h4>)}
               <div className="row align-self-center">
             <div className="d-flex flex-wrap flex-column">
@@ -60,7 +61,8 @@ class Profile extends Component {
                 <h5><span key={index} className="badge badge-primary align-self-center">{specialization} </span></h5>)))}
               </div>
             </div>
-            <h3 className="text-center text-info">Social Media:</h3>
+            {isEmpty(profile.socialMedia) ? null : (<hr/>)}
+            {isEmpty(profile.socialMedia) ? null : (<h4 className="text-center text-info">Social Media:</h4>)}
             <div className="social-btns text-center align-self-center">
                           {isEmpty(profile.website) ? null : (
                   <a
@@ -68,7 +70,7 @@ class Profile extends Component {
                     href={profile.website}
                     target="_blank"
                   >
-                    <i className="fas fa-globe fa-2x mt-4"></i>
+                    <i className="fas fa-globe fa-2x"></i>
                   </a>
                 )}
                       {isEmpty(profile.socialMedia && profile.socialMedia.instagram) ? null : (

@@ -15,8 +15,12 @@ class Profiles extends Component {
     let profileItems;
 
     if (profiles === null || loading) {
+      profileItems = <div><h2 className="lead text-white">Loading profiles...</h2></div>}
+
+    else if (profiles.length === 0 ) {
       profileItems = <div><h2>No profiles have been added.</h2></div>
     }
+
     else {
       if (profiles.length > 0) {
         profileItems = profiles.map(profile => (

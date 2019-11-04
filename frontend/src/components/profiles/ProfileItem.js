@@ -16,6 +16,8 @@ class ProfileItem extends Component {
                     <p className="locationInfo text-muted font-italic mb-1">{profile.city}, {profile.state} {profile.zip}</p>
                     {isEmpty(profile.selectedSpecializations) ? null : (profile.selectedSpecializations.map((specialization, index) => (
                 <span key={index} className="badge badge-pill badge-primary mr-1 mb-2">{specialization}</span>)))}
+                {isEmpty(profile.selectedCertifications) ? null : (profile.selectedCertifications.map((certification, index) => (
+                <span key={index} className="badge badge-pill badge-primary mr-1 mb-2">{certification}</span>)))}
                   </div>
                   <div className="col-sm-3 text-align-center mt-2">
                   <Link to={`/profile/${profile.user._id}`} className="btn btn-primary btn-info btn-lg">

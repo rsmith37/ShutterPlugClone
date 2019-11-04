@@ -22,7 +22,7 @@ class Dashboard extends Component {
     let dashboardContent;
 
     if (profile === null || loading) {
-      dashboardContent = <Spinner />;
+      dashboardContent = (<div><h2 className="lead text-white">Loading dashboard...</h2></div>);
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
