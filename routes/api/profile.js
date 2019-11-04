@@ -89,22 +89,22 @@ router.get("/handle/:handle", (req, res) => {
     });
 });
 
-// @route   GET api/user/:user_id
-// @desc    Get profile by user ID
+// @route   GET api/profile/:id
+// @desc    Get profile by handle
 // @access  Public
-// req.params.handle grabs the ":handle" in the URL
-router.get("/user/:user_id", (req, res) => {
+router.get("/:id", (req, res) => {
   const errors = {};
-  Profile.findOne({ user: req.params.user_id })
-    .populate("user", "firstName")
+  Profile.findOne({ user: req.params.id })
     .then(profile => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user.";
         res.status(404).json(errors);
       }
-      res.json({ profile: "There is no profile for this user." });
+      res.json(profile);
     })
-    .catch(err => res.status(404).json(err));
+    .catch(err => {
+      res.status(404).json({ profile: "There is no profile for this user." });
+    });
 });
 
 // @route   POST api/profile

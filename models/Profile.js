@@ -30,7 +30,7 @@ const ProfileSchema = new schema({
     type: String
   },
   selectedDistance: {
-    type: String
+    type: Object
   },
   selectedCertifications: [
     {

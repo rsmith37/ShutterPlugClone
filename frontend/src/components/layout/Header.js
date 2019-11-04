@@ -16,6 +16,11 @@ class Header extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
+            <Link className="nav-link" to="/profiles">
+            <button className="btn btn-secondary btn-lg">Browse Artists</button>
+                </Link>
+                </li>
+      <li className="nav-item">
           <Link to="/dashboard" className="nav-link">
             <button className="btn btn-secondary btn-lg">
               My Account
@@ -35,6 +40,11 @@ class Header extends Component {
 
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+            <Link className="nav-link" to="/profiles">
+            <button className="btn btn-secondary btn-lg">Browse Artists</button>
+                </Link>
+                </li>
         <li className="nav-item">
           <Link to="/register" className="nav-link">
             <button className="btn btn-secondary btn-lg">Sign Up</button>
@@ -80,7 +90,6 @@ class Header extends Component {
             </div>
           </div>
         </nav>
-      // </div>
     );
   }
 }

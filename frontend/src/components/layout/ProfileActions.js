@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Profile from '../profiles/Profile';
 
 const ProfileActions = () => {
   return (
@@ -10,5 +11,8 @@ const ProfileActions = () => {
     </div>
   )
 }
+
+
+
 
 export default ProfileActions;

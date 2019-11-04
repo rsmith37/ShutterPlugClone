@@ -29,9 +29,9 @@ class Dashboard extends Component {
         // Something is in this object aka they have a current profile
         dashboardContent = (
           <div>
-            <p className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link></p>
+            <p className="lead text-white mb-4">Welcome <Link to={`/profile/${profile.user._id}`}>{user.firstName} {user.lastName}</Link></p>
             <ProfileActions />
-            <div style={{ marginBottom: '60px' }}></div>
+            <div style={{ marginBottom: '20px' }}></div>
             <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete Account</button>
           </div>
         )
@@ -39,7 +39,7 @@ class Dashboard extends Component {
         // User is logged in but has no profile
         dashboardContent = (
           <div>
-            <p className="lead text-muted">Welcome {user.name}</p>
+            <p className="lead text-white">Welcome {user.name}</p>
             <p>You have not yet set up a profile, please add some info</p>
             <Link to="/profile/createArtist" className="btn btn-lg btn-info">
               Create Profile
@@ -54,7 +54,7 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
+              <h1 className="display-4 text-white">Dashboard</h1>
               {dashboardContent}
             </div>
           </div>
