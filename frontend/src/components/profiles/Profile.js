@@ -46,18 +46,18 @@ class Profile extends Component {
               )}
             </p>
             <hr />
-            {(!isEmpty(profile.selectedCertifications) || !isEmpty(profile.selectedSpecializations)) ? null : (<h3 className="text-center text-info">Certifications and Specializations</h3>)}
-              {!isEmpty(profile.selectedCertifications) ? null : (<h4 className="text-center text-info">Certifications</h4>)}
+            {(isEmpty(profile.selectedCertifications) || !isEmpty(profile.selectedSpecializations)) ? null : (<h3 className="text-center text-info">Certifications and Specializations</h3>)}
+              {isEmpty(profile.selectedCertifications) ? null : (<h4 className="text-center text-info">Certifications</h4>)}
               <div className="row">
               <div className="d-flex flex-wrap justify-content-center align-items-center">
-              {!isEmpty(profile.selectedCertifications) ? null : (profile.selectedCertifications.map((certification, index) => (
+              {isEmpty(profile.selectedCertifications) ? null : (profile.selectedCertifications.map((certification, index) => (
                 <span key={index} className="badge badge-pill badge-warning mr-1 mb-2">{certification}</span>)))}
               </div>
             </div>
-              {!isEmpty(profile.selectedCertifications) ? null : (<h4 className="text-center text-info">Specializations</h4>)}
+              {isEmpty(profile.selectedCertifications) ? null : (<h4 className="text-center text-info">Specializations</h4>)}
               <div className="row">
             <div className="d-flex flex-wrap justify-content-center align-items-center">
-              {!isEmpty(profile.selectedCertifications) ? null : (profile.selectedCertifications.map((certification, index) => (
+              {isEmpty(profile.selectedCertifications) ? null : (profile.selectedCertifications.map((certification, index) => (
                 <span key={index} className="badge badge-pill badge-warning mr-1 mb-2">{certification}</span>)))}
               </div>
             </div>

@@ -14,9 +14,13 @@ class Profiles extends Component {
     const { profiles, loading } = this.props.profile;
     let profileItems;
 
-    if (profiles === null || loading) {
+    if (profiles === null) {
+      profileItems = <div><h2>No profiles have been added.</h2></div>
+    }
+    else if (loading) {
       profileItems = <Spinner />;
-    } else {
+    } 
+    else {
       if (profiles.length > 0) {
         profileItems = profiles.map(profile => (
           <ProfileItem key={profile._id} profile={profile} />

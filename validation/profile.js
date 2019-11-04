@@ -4,16 +4,6 @@ const isEmpty = require("./is-empty");
 module.exports = function validateProfileInput(data) {
   let errors = {};
 
-  // data.handle = !isEmpty(data.handle) ? data.handle : "";
-
-  // if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
-  //   errors.handle = "Handle needs to be between 2 and 40 characters";
-  // }
-
-  // if (Validator.isEmpty(data.handle)) {
-  //   errors.handle = "Profile handle is required";
-  // }
-
   if (Validator.isEmpty(data.firstName)) {
     errors.firstName = "First name is required";
   }
@@ -34,13 +24,23 @@ module.exports = function validateProfileInput(data) {
     errors.zip = "Zip code is required";
   }
 
-  if (Validator.isEmpty(data.phoneNumber)) {
-    errors.phoneNumber = "Phone number is required";
+  if (!Validator.isPostalCode) {
+    errors.zip = "Zip code is invalid";
+  }
+
+  // if (Validator.isEmpty(data.phoneNumber)) {
+  //   errors.phoneNumber = "Phone number is required";
+  // }
+
+  if (!Validator.isMobilePhone(data.phoneNumber)) {
+    errors.phoneNumber = "Invalid phone number";
   }
 
   if (Validator.isEmpty(data.bio)) {
     errors.bio = "Short biography is required";
   }
+
+  
 
   if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {

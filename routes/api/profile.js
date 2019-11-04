@@ -73,24 +73,24 @@ router.get("/all", (req, res) => {
 // @desc    Get profile by handle
 // @access  Public
 // req.params.handle grabs the ":handle" in the URL
-router.get("/handle/:handle", (req, res) => {
-  const errors = {};
-  Profile.findOne({ handle: req.params.handle })
-    .populate("user", "firstName")
-    .then(profile => {
-      if (!profile) {
-        errors.noprofile = "There is no profile for this user.";
-        res.status(404).json(errors);
-      }
-      res.json(profile);
-    })
-    .catch(err => {
-      res.status(404).json({ profile: "There is no profile for this user." });
-    });
-});
+// router.get("/handle/:handle", (req, res) => {
+//   const errors = {};
+//   Profile.findOne({ handle: req.params.handle })
+//     .populate("user", "firstName")
+//     .then(profile => {
+//       if (!profile) {
+//         errors.noprofile = "There is no profile for this user.";
+//         res.status(404).json(errors);
+//       }
+//       res.json(profile);
+//     })
+//     .catch(err => {
+//       res.status(404).json({ profile: "There is no profile for this user." });
+//     });
+// });
 
 // @route   GET api/profile/:id
-// @desc    Get profile by handle
+// @desc    Get profile by user ID
 // @access  Public
 router.get("/:id", (req, res) => {
   const errors = {};
@@ -165,23 +165,22 @@ router.post(
           { new: true }
           // Respond with updated profile
         ).then(profile => res.json(profile));
-      } else {
+      };
+      // } else {
         // Create new profile
 
-        // Check if handle exists
-        Profile.findOne({ handle: profileFields.handle }).then(profile => {
-          if (profile) {
-            errors.handle = "That handle already exists";
-            res.status(400).json(errors);
-          }
+        // // Check if handle exists
+        // Profile.findOne({ handle: profileFields.handle }).then(profile => {
+        //   if (profile) {
+        //     errors.handle = "That handle already exists";
+        //     res.status(400).json(errors);
+        //   }
 
           // Save profile
           new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
-    });
-  }
-);
+    );
 
 // @route   DELETE api/profile
 // @desc    Delete user and profile

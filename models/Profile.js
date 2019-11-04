@@ -7,27 +7,29 @@ const ProfileSchema = new schema({
     type: schema.Types.ObjectId, // Associate the user by its objectID
     ref: "users" // Reference the collection we want to refer to
   },
-  handle: {
-    type: String,
-    max: 40
-  },
   firstName: {
-    type: String
+    type: String,
+    required: true
   },
   lastName: {
-    type: String
+    type: String,
+    required: true
   },
   city: {
-    type: String
+    type: String,
+    required: true
   },
   state: {
-    type: String
+    type: String,
+    required: true
   },
   zip: {
-    type: String
+    type: String,
+    required: true
   },
   phoneNumber: {
-    type: String
+    type: String,
+    required: true
   },
   selectedDistance: {
     type: Object
