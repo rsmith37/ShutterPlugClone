@@ -29,7 +29,7 @@ class Dashboard extends Component {
         // Something is in this object aka they have a current profile
         dashboardContent = (
           <div>
-            <p className="lead text-white mb-4">Welcome <Link to={`/profile/${profile.user._id}`}>{user.firstName} {user.lastName}</Link></p>
+            <p className="lead text-white">Welcome <Link to={`/profile/${profile.user._id}`}>{user.firstName} {user.lastName}</Link></p>
             <ProfileActions />
             <div style={{ marginBottom: '20px' }}></div>
             <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete Account</button>
@@ -39,8 +39,8 @@ class Dashboard extends Component {
         // User is logged in but has no profile
         dashboardContent = (
           <div>
-            <p className="lead text-white">Welcome {user.name}</p>
-            <p className="lead text-white">You have not yet set up a profile, please add some info</p>
+            <p className="lead text-white">Welcome {user.firstName}</p>
+            <p>You have not yet set up a profile, please add some info</p>
             <Link to="/profile/createArtist" className="btn btn-lg btn-info">
               Create Profile
             </Link>
@@ -48,7 +48,7 @@ class Dashboard extends Component {
         );
       }
     }
-
+    
     return (
       <div className="dashboard">
         <div className="container">
@@ -60,9 +60,7 @@ class Dashboard extends Component {
           </div>
         </div>
       </div>
-    );
-  }
-}
+    );}}
 
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
