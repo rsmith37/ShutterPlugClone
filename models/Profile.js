@@ -29,10 +29,9 @@ const ProfileSchema = new schema({
   priceRange: {
     type: String
   },
-  certifications: [
+  certifications: [ 
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "cert"
+      
     }
   ],
   youtube: {

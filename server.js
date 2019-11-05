@@ -47,3 +47,5 @@ const port = 5000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
 //JWT module creates the JSON Web Token, and then Passport and Passport-JWT validate the token and extract the user's information from it
+
+//run server with npm run dev

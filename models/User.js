@@ -21,8 +21,8 @@ const UserSchema = new schema({
     type: String,
     required: true
   },
-  usertype: {
-    type: String,
+  usertype: {      //Referencing what type of you the profile will be             
+    type: String,  //Whether an admin or artist
     required: true
   }
 });
