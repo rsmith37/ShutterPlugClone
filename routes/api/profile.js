@@ -4,6 +4,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const isEmpty = require('../../validation/is-empty');
 
 //Load validation
 const validateProfileInput = require("../../validation/profile");
@@ -136,8 +137,8 @@ router.post(
       profileFields.selectedCertifications = []; 
       req.body.selectedCertifications.map(element => {
         profileFields.selectedCertifications.push(element.value);
-      })
-    }
+      });
+      }
     if (typeof req.body.selectedSpecializations !== "undefined") {
       profileFields.selectedSpecializations = []; 
       req.body.selectedSpecializations.map(element => {
@@ -165,22 +166,23 @@ router.post(
           { new: true }
           // Respond with updated profile
         ).then(profile => res.json(profile));
-      };
-      // } else {
+      } else {
         // Create new profile
 
-        // // Check if handle exists
-        // Profile.findOne({ handle: profileFields.handle }).then(profile => {
-        //   if (profile) {
-        //     errors.handle = "That handle already exists";
-        //     res.status(400).json(errors);
-        //   }
+        // Check if handle exists
+        Profile.findOne({ user: profileFields.user }).then(profile => {
+          if (profile) {
+            errors.user = "That user already has a profile";
+            res.status(400).json(errors);
+          }
 
           // Save profile
           new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
-    );
+    });
+  }
+);
 
 // @route   DELETE api/profile
 // @desc    Delete user and profile
