@@ -4,6 +4,14 @@
 https://github.com/GGC-SD/ShutterPlug
 
 ## Installation ##
+1. Install NodeJS and configure npm to run via terminal of choice
+2. Clone Shutter Plug git repo using HTTPS or SSH
+3. Using terminal, navigate to %path%\ShutterPlug
+4. Run the following commands to install necessary node modules:
+   * npm install
+   * npm run frontend-install
+   * npm install nodemon --save-dev
+5. Run the following command to start the program locally: npm run dev
 
 ## Usage ##
 
