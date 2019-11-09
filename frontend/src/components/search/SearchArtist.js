@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Select from "react-select";
+import { connect } from 'react-redux';
+import { searchProfiles } from '../../actions/profileActions';
+import PropTypes from 'prop-types';
 
 class SearchArtist extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       selectedOption: null,
       selectedDistance: null,
@@ -11,7 +14,7 @@ class SearchArtist extends Component {
       firstName: "",
       lastName: "",
       zipcode: "",
-      specialization: "",
+      selectedSpecializations: "",
       certifications: "",
       certificationArray: [
         {
@@ -205,14 +208,13 @@ class SearchArtist extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    // const newUser = {
-    //   firstName: this.state.firstName,
-    //   lastName: this.state.lastName,
-    //   email: this.state.email,
-    //   username: this.state.username,
-    //   usertype: this.state.usertype,
-    //   password: this.state.password,
-    //   password2: this.state.password2
+    
+    const search = {
+      firstName: this.state.firstName,
+      selectedSpecializations: this.state.selectedSpecializations
+    }
+
+    this.props.searchProfiles(search);
   }
 
   render() {
@@ -335,6 +337,15 @@ class SearchArtist extends Component {
   }
 }
 
-SearchArtist.propTypes = {};
+SearchArtist.propTypes = {
+  profile: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  searchProfiles: PropTypes.func.isRequired
+};
 
-export default SearchArtist;
+const mapStateToProps = state => ({
+  profile: state.profile,
+  errors: state.errors
+})
+
+export default connect(null, { searchProfiles })(SearchArtist);

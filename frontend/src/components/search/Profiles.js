@@ -32,7 +32,7 @@ class Profiles extends Component {
     }
 
     return (
-      <div className="profiles" style={{width: '100%'}}>
+      <div className="profiles">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

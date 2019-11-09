@@ -80,6 +80,25 @@ export const getProfiles = () => dispatch => {
     );
 };
 
+// Search for profiles
+export const searchProfiles = (search) => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get('/api/profile/search', search)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data
+      })  
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: {}
+      })  
+    )
+}
+
 // Delete account & profile
 export const deleteAccount = () => dispatch => {
   if (window.confirm('Are you sure? This action CAN NOT be undone!')) {
