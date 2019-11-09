@@ -8,7 +8,7 @@ class ProfileItem extends Component {
     const { profile } = this.props;
 
     return (
-        <div>{isEmpty(profile.user) ? null : (<section className="search-result-item">
+        <div>{isEmpty(profile.user) ? null : (<section className="search-result-item mb-3">
               <div className="search-result-item-body">
                 <div className="row">
                   <div className="col-sm-9">

@@ -20,9 +20,9 @@ import Home from "./components/layout/Home";
 import Dashboard from "./components/layout/Dashboard";
 import PrivateRoute from "./components/common/PrivateRoute";
 import ContactUs from "./components/layout/ContactUs";
-import Profiles from './components/profiles/Profiles';
-import Profile from './components/profiles/Profile';
-
+import Profiles from './components/search/Profiles';
+import Profile from './components/search/Profile';
+import BrowseArtists from './components/search/BrowseArtists';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -53,7 +53,7 @@ const App = () => {
               <Route exact path="/" component={Home} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/search" component={SearchArtist} />
+              <Route exact path="/search" component={BrowseArtists} />
               <Route exact path="/exampleSearch" component={ArtistCard} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:userId" component={Profile} />

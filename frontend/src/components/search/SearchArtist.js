@@ -5,7 +5,6 @@ class SearchArtist extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
       selectedOption: null,
       selectedDistance: null,
       selectedCertification: null,
@@ -13,12 +12,7 @@ class SearchArtist extends Component {
       lastName: "",
       zipcode: "",
       specialization: "",
-      experience: "",
       certifications: "",
-      bio: "",
-      instagram: "",
-      facebook: "",
-      twitter: "",
       certificationArray: [
         {
           value: "color",
@@ -227,8 +221,8 @@ class SearchArtist extends Component {
     // const { selectedCertification } = this.state;
 
     return (
-      <div className="card mb-3">
-        <h1 className="card-header">Plug an Artist</h1>
+      <div className="card mb-3" style={{width: '100%'}}>
+        {/* <h1 className="card-header">Plug an Artist</h1> */}
         <div className="card-body text-left">
           <form>
             <h3>Search by Name</h3>
@@ -259,22 +253,6 @@ class SearchArtist extends Component {
                   onChange={this.onChange}
                   className="form-control"
                   placeholder="Enter last name..."
-                />
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group col-md-6">
-                <div className="form-row">
-                  <i className="far fa-user px-2"></i>
-                  <label htmlFor="">Username</label>
-                </div>
-                <input
-                  name="username"
-                  type="text"
-                  value={this.state.username}
-                  onChange={this.onChange}
-                  className="form-control"
-                  placeholder="Search by username"
                 />
               </div>
             </div>
@@ -312,7 +290,7 @@ class SearchArtist extends Component {
               </div>
             </div>
             <br />
-            <h3>Search by Certifications / Specializations</h3>
+            <h3>Search by Qualifications</h3>
             <div className="form-group">
               <div className="form-row">
                 <i className="fas fa-camera px-2"></i>

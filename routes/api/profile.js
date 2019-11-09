@@ -70,6 +70,28 @@ router.get("/all", (req, res) => {
     });
 });
 
+// @route   GET api/profile/search
+// @desc    Get profiles via search form with params
+// @access  Public
+router.get("/search", (req, res) => {
+  const errors = {};
+
+  Profile.find()
+    .where('firstName').regex('.*' + req.body.firstName + '.*')
+    .where('selectedSpecializations').ne(req.body.selectedSpecializations)
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = "There are no profiles";
+        // return res.status(404).json(errors);
+        return res.status(404).json(profiles);
+      }
+      res.json(profiles);
+    })
+    .catch(err => {
+      res.status(404).json({ profile: "There are no profiles to display." });
+    });
+});
+
 // @route   GET api/profile/handle/:handle
 // @desc    Get profile by handle
 // @access  Public
