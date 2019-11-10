@@ -81,10 +81,11 @@ export const getProfiles = () => dispatch => {
 };
 
 // Search for profiles
-export const searchProfiles = (search) => dispatch => {
+export const searchProfiles = (searchData) => dispatch => {
+  console.log(searchData)
   dispatch(setProfileLoading());
   axios
-    .get('/api/profile/search', search)
+    .post('/api/profile/search', searchData)
     .then(res =>
       dispatch({
         type: GET_PROFILES,
@@ -94,7 +95,7 @@ export const searchProfiles = (search) => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_PROFILES,
-        payload: {}
+        payload: null
       })  
     )
 }

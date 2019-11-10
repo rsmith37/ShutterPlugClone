@@ -41,7 +41,7 @@ class Header extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-            <Link className="nav-link" to="/profiles">
+            <Link className="nav-link" to="/search">
             <button className="btn btn-secondary btn-lg">Browse Artists</button>
                 </Link>
                 </li>

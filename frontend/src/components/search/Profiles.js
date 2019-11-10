@@ -18,7 +18,7 @@ class Profiles extends Component {
       profileItems = <div><h2 className="lead text-white">Loading profiles...</h2></div>}
 
     else if (profiles.length === 0 ) {
-      profileItems = <div><h2>No profiles have been added.</h2></div>
+      profileItems = <div><h2>No profiles match your search criteria</h2></div>
     }
 
     else {

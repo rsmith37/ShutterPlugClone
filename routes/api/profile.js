@@ -70,15 +70,21 @@ router.get("/all", (req, res) => {
     });
 });
 
-// @route   GET api/profile/search
-// @desc    Get profiles via search form with params
+// @route   POST api/profile/search
+// @desc    POST profiles via search form with params
 // @access  Public
-router.get("/search", (req, res) => {
+router.post("/search", (req, res) => {
   const errors = {};
 
-  Profile.find()
-    .where('firstName').regex('.*' + req.body.firstName + '.*')
-    .where('selectedSpecializations').ne(req.body.selectedSpecializations)
+  Profile.find({ $and:[
+    {firstName: new RegExp('.*' + req.body.firstName + '.*', "i")},
+    {lastName: new RegExp('.*' + req.body.lastName + '.*', "i")}
+  ]})
+    .populate("user", "email")
+    // .where('firstName').regex('^' + req.body.firstName + '$')
+    // .where('firstName').regex('.*' + req.body.firstName + '.*')
+    .where('selectedSpecializations').in(req.body.selectedSpecializations)
+    .where('selectedCertifications').in(req.body.selectedCertification)
     .then(profiles => {
       if (!profiles) {
         errors.noprofile = "There are no profiles";
