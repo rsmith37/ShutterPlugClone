@@ -102,12 +102,9 @@ class Home extends Component {
                     </div>
                     <div className="text-center px-2">
                         <h4>Have questions, offer feedback, or would like to report a bug?</h4>
-                        <Link to="/contactUs">
-                            <button className="btn btn-secondary btn-lg">Contact Us!</button>
-                        </Link>
-                        <Switch>
-                            <Route exact path="/contactUs" component={ContactUs} />    
-                        </Switch>   
+                        <div className = "text-center px-2">
+                            <h5><a href="mailto:cconnersillustrations@hotmail.com">Contact Shutter Plug!</a></h5>
+                        </div>
                     </div>   
                 </div>           
             </div>

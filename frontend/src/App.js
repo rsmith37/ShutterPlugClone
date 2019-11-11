@@ -54,8 +54,7 @@ const App = () => {
                 exact
                 path="/profile/createArtist"
                 component={CreateArtistProfile}
-              />
-              <Route exact path="/contactUs" component={ContactUs} />              
+              />            
             </Switch>
           </div>
           <Footer />
