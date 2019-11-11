@@ -133,13 +133,13 @@ router.post(
     if (req.body.zip) profileFields.zip = req.body.zip;
     if (req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber;
     if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
-    if (typeof req.body.selectedCertifications !== "undefined") {
+    if (typeof req.body.selectedCertifications !== "undefined" && req.body.selectedCertifications[0] !== null) {
       profileFields.selectedCertifications = []; 
       req.body.selectedCertifications.map(element => {
         profileFields.selectedCertifications.push(element.value);
       });
       }
-    if (typeof req.body.selectedSpecializations !== "undefined") {
+    if (typeof req.body.selectedSpecializations !== "undefined" && req.body.selectedSpecializations[0] !== null) {
       profileFields.selectedSpecializations = []; 
       req.body.selectedSpecializations.map(element => {
         profileFields.selectedSpecializations.push(element.value);

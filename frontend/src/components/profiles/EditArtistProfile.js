@@ -210,7 +210,7 @@ class EditArtistProfile extends Component {
     this.onChange = this.onChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
+  };
 
   componentDidMount() {
     this.props.getCurrentProfile();
@@ -230,8 +230,8 @@ class EditArtistProfile extends Component {
       profile.phoneNumber = !isEmpty(profile.phoneNumber) ? profile.phoneNumber : "";
       profile.radius = !isEmpty(profile.radius) ? profile.radius : "";
       profile.experience = !isEmpty(profile.experience) ? profile.experience : "";
-      profile.selectedCertifications = !isEmpty(profile.selectedCertifications) ? profile.selectedCertifications : [];
-      profile.selectedSpecializations = !isEmpty(profile.selectedSpecializations) ? profile.selectedSpecializations : [];
+      profile.selectedCertifications = (!isEmpty(profile.selectedCertifications) || profile.selectedCertifications[0] == null) ? profile.selectedCertifications : [];
+      profile.selectedSpecializations = (!isEmpty(profile.selectedSpecializations) || profile.selectedSpecializations[0] == null) ? profile.selectedSpecializations : [];
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
       profile.website = !isEmpty(profile.website) ? profile.website : "";
       profile.socialMedia = !isEmpty(profile.socialMedia) ? profile.socialMedia : {};
@@ -263,8 +263,8 @@ class EditArtistProfile extends Component {
           twitter: profile.socialMedia.twitter
         });
 
-    }
-  }
+    };
+  };
 
   onChange(e) {
     // This sets the state for whatever input field the user is currently typing in

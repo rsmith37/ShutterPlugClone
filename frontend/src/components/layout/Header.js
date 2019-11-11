@@ -55,6 +55,11 @@ class Header extends Component {
             <button className="btn btn-secondary btn-lg">Sign In</button>
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/uploadimage" className="nav-link">
+            <button className="btn btn-secondary btn-lg">Upload Image</button>
+          </Link>
+        </li>
       </ul>
     );
 

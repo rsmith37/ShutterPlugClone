@@ -22,6 +22,7 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import ContactUs from "./components/layout/ContactUs";
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profiles/Profile';
+import UploadImage from './components/profiles/uploadimages/UploadImage';
 
 
 // Check for token
@@ -57,6 +58,7 @@ const App = () => {
               <Route exact path="/exampleSearch" component={ArtistCard} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:userId" component={Profile} />
+              <Route exact path="/uploadimage" component={UploadImage}/>
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
