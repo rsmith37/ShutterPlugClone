@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 
 
 export class ContactUs extends Component {
@@ -40,4 +40,4 @@ export class ContactUs extends Component {
     }
 }
 
-export default ContactUs;
+export default ContactUs;*/
