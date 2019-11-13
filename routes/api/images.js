@@ -8,6 +8,8 @@ const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const db = require("../../config/keys").mongoURI;
+const fs = require('fs')
+const Image = require('../../models/Image')
 
 // Create storage engine / object for GridFS
 const storage = new GridFsStorage({
@@ -35,10 +37,35 @@ const storage = new GridFsStorage({
 // @route   POST api/images/upload
 // @desc    Upload an image
 // @access  Public (for now)
-router.post(
-  "/upload", upload.single('file'), (req, res) => {
-    res.json({file: req.file});
-  });
+// router.post(
+//   "/upload", upload.single('file'), (req, res) => {
+//     res.json({file: req.body.file, test: "Post /upload worked!", filename: req.body.file.filename, fileinfo: req.body.file.fileInfo});
+//   });
+router.post('/upload', (req, res) => {
+  let newImage = new Image();
+  newImage.pic.data = fs.readFileSync("/Users/ryancunico/Desktop/shadowme.jpg");
+  newImage.pic.contentType = 'image/png';
+  newImage.save();
+  res.json({success: "it worked"})
+})
 
+// router.get('/pics', (req, res) => {
+//   Image
+//     .find()
+//     .then(img => {
+//       res.contentType(img.pic.contentType)
+//       res.send(img.pic.data)
+//     })
+// })
+
+router.get('/pics', (req, res) => {
+    Image.findOne({}, function(err, pic) {
+        if (err)
+            res.send(err);
+        console.log("PIC: " + pic.Image.data);
+        res.contentType('json');
+        res.send(pic);
+    });
+})
 
 module.exports = router;

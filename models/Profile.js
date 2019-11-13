@@ -44,6 +44,10 @@ const ProfileSchema = new schema({
       type: String
     }
   ],
+  // profilePic: {
+  //   data: Buffer,
+  //   contentType: String
+  // },
   bio: {
     type: String
   },
