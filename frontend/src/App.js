@@ -10,13 +10,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Header from "./components/layout/Header";
 import CreateArtistProfile from "./components/profiles/CreateArtistProfile";
+import EditArtistProfile from './components/profiles/EditArtistProfile';
 import SearchArtist from "./components/search/SearchArtist";
 import ArtistCard from "./components/profiles/ArtistCard";
 import Register from "./components/profiles/Register";
 import Login from "./components/profiles/Login";
 import Footer from "./components/layout/Footer";
 import Home from "./components/layout/Home";
+import Dashboard from "./components/layout/Dashboard";
+import PrivateRoute from "./components/common/PrivateRoute";
 import ContactUs from "./components/layout/ContactUs";
+import Profiles from './components/search/Profiles';
+import Profile from './components/search/Profile';
+import BrowseArtists from './components/search/BrowseArtists';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -44,18 +50,27 @@ const App = () => {
         <div className="App">
           <Header />
           <div className="container">
-            <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/search" component={SearchArtist} />
+              <Route exact path="/search" component={BrowseArtists} />
               <Route exact path="/exampleSearch" component={ArtistCard} />
-              <Route
-                exact
-                path="/profile/createArtist"
-                component={CreateArtistProfile}
-              />            
-            </Switch>
+              <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:userId" component={Profile} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/profile/createArtist"
+                  component={CreateArtistProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/edit-profile" component={EditArtistProfile} />
+              </Switch>
+              <Route exact path="/contactUs" component={ContactUs} />              
           </div>
           <Footer />
         </div>
