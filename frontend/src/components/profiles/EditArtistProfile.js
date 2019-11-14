@@ -4,10 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Select from "react-select";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { createProfile } from "../../actions/profileActions";
+import { createProfile, getCurrentProfile } from "../../actions/profileActions";
 import classnames from "classnames";
+import isEmpty from '../../validation/is-empty';
 
-class CreateArtistProfile extends Component {
+class EditArtistProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -211,9 +212,57 @@ class CreateArtistProfile extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+    if (nextProps.profile.profile) {
+      const profile = nextProps.profile.profile;
+      profile.firstName = !isEmpty(profile.firstName) ? profile.firstName : "";
+      profile.lastName = !isEmpty(profile.lastName) ? profile.lastName : "";
+      profile.city = !isEmpty(profile.city) ? profile.city : "";
+      profile.state = !isEmpty(profile.state) ? profile.state : "";
+      profile.zip = !isEmpty(profile.zip) ? profile.zip : "";
+      profile.phoneNumber = !isEmpty(profile.phoneNumber) ? profile.phoneNumber : "";
+      profile.radius = !isEmpty(profile.radius) ? profile.radius : "";
+      profile.experience = !isEmpty(profile.experience) ? profile.experience : "";
+      profile.selectedCertifications = !isEmpty(profile.selectedCertifications) ? profile.selectedCertifications : [];
+      profile.selectedSpecializations = !isEmpty(profile.selectedSpecializations) ? profile.selectedSpecializations : [];
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
+      profile.website = !isEmpty(profile.website) ? profile.website : "";
+      profile.socialMedia = !isEmpty(profile.socialMedia) ? profile.socialMedia : {};
+      profile.facebook = !isEmpty(profile.socialMedia.facebook)
+        ? profile.socialMedia.facebook
+        : "";
+        profile.instagram = !isEmpty(profile.socialMedia.instagram)
+        ? profile.socialMedia.instagram
+        : "";
+        profile.twitter = !isEmpty(profile.socialMedia.twitter)
+        ? profile.socialMedia.twitter
+        : "";
+
+        this.setState({
+          firstName: profile.firstName,
+          lastName: profile.lastName,
+          city: profile.city,
+          state: profile.state,
+          zip: profile.zip,
+          phoneNumber: profile.phoneNumber,
+          // radius: profile.radius,
+          // experience: profile.experience,
+          selectedCertifications: !isEmpty(profile.selectedCertifications) ? profile.selectedCertifications : [],
+          selectedSpecializations: !isEmpty(profile.selectedSpecializations) ? profile.selectedSpecializations : [],
+          bio: profile.bio,
+          website: profile.website,
+          facebook: profile.socialMedia.facebook,
+          instagram: profile.socialMedia.instagram,
+          twitter: profile.socialMedia.twitter
+        });
+
     }
   }
 
@@ -257,7 +306,7 @@ class CreateArtistProfile extends Component {
     const { errors } = this.state;
     return (
       <div className="card mb-3">
-        <h1 className="card-header">Create Artist Profile</h1>
+        <h1 className="card-header">Edit Artist Profile</h1>
         <div className="card-body text-left">
           <form onSubmit={this.onSubmit}>
             <h3>Artist Info:</h3>
@@ -516,7 +565,7 @@ class CreateArtistProfile extends Component {
             <br />
             <input
               type="submit"
-              value="Create Profile"
+              value="Update Profile"
               className="btn btn-secondary text-uppercase font-weight-bold"
             />
           </form>
@@ -527,9 +576,11 @@ class CreateArtistProfile extends Component {
   }
 }
 
-CreateArtistProfile.propTypes = {
+EditArtistProfile.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -539,5 +590,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProfile }
-)(withRouter(CreateArtistProfile));
+  { createProfile, getCurrentProfile }
+)(withRouter(EditArtistProfile));

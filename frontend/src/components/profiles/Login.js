@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { loginUser, logoutUser } from "../../actions/authActions";
+import { loginUser } from "../../actions/authActions";
 
 class Login extends Component {
   constructor() {

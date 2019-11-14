@@ -7,22 +7,39 @@ const ProfileSchema = new schema({
     type: schema.Types.ObjectId, // Associate the user by its objectID
     ref: "users" // Reference the collection we want to refer to
   },
-  handle: {
+  firstName: {
     type: String,
-    max: 40
+    required: true
   },
-  location: {
-    type: String
+  lastName: {
+    type: String,
+    required: true
   },
-  phone: {
-    type: String
+  city: {
+    type: String,
+    required: true
   },
-  specializations: [
+  state: {
+    type: String,
+    required: true
+  },
+  zip: {
+    type: String,
+    required: true
+  },
+  phoneNumber: {
+    type: String,
+    required: true
+  },
+  selectedDistance: {
+    type: Object
+  },
+  selectedCertifications: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "specializations"
+      type: String
     }
   ],
+<<<<<<< HEAD
   website: {
     type: String
   },
@@ -32,21 +49,28 @@ const ProfileSchema = new schema({
   certifications: [ 
     {
       
+=======
+  selectedSpecializations: [
+    {
+      type: String
+>>>>>>> richard
     }
   ],
-  youtube: {
+  bio: {
     type: String
   },
-  twitter: {
-    type: String
+  socialMedia: {
+    instagram: {
+      type: String
+    },
+    facebook: {
+      type: String
+    },
+    twitter: {
+      type: String
+    }
   },
-  facebook: {
-    type: String
-  },
-  instagram: {
-    type: String
-  },
-  linkedin: {
+  website: {
     type: String
   }
 });
