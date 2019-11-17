@@ -15,7 +15,7 @@ class CreateArtistProfile extends Component {
       selectedCertificationsArray: [],
       selectedSpecializationsArray: [],
       selectedSpecializations: null,
-      selectedDistance: null,
+      selectedDistance: "0 miles",
       selectedCertifications: null,
       firstName: "",
       lastName: "",

@@ -195,9 +195,9 @@ router.post(
     if (req.body.zip) profileFields.zip = req.body.zip;
     if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
     if (req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber;
-    if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
-    if (typeof req.body.selectedCertifications !== "undefined" && req.body.selectedCertifications[0] !== null) {  
-      // if (req.body.selectedCertifications) {
+    // if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
+    // if (typeof req.body.selectedCertifications !== "undefined" && req.body.selectedCertifications[0] !== null) {  
+      if (req.body.selectedCertifications) {
         const certArray = req.body.selectedCertifications.split(',');
       profileFields.selectedCertifications = []; 
       certArray.map(element => {

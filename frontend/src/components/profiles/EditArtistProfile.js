@@ -15,6 +15,8 @@ class EditArtistProfile extends Component {
       selectedSpecializations: null,
       selectedDistance: null,
       selectedCertifications: null,
+      selectedCertificationsArray: [],
+      selectedSpecializationsArray: [],
       firstName: "",
       lastName: "",
       city: "",
@@ -206,7 +208,6 @@ class EditArtistProfile extends Component {
       ],
       errors: {}
     };
-
     this.onChange = this.onChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -227,11 +228,14 @@ class EditArtistProfile extends Component {
       profile.city = !isEmpty(profile.city) ? profile.city : "";
       profile.state = !isEmpty(profile.state) ? profile.state : "";
       profile.zip = !isEmpty(profile.zip) ? profile.zip : "";
+      profile.selectedDistance = !isEmpty(profile.selectedDistance) ? profile.selectedDistance : {value: "0 miles"};
       profile.phoneNumber = !isEmpty(profile.phoneNumber) ? profile.phoneNumber : "";
       profile.radius = !isEmpty(profile.radius) ? profile.radius : "";
       profile.experience = !isEmpty(profile.experience) ? profile.experience : "";
-      profile.selectedCertifications = !isEmpty(profile.selectedCertifications) ? profile.selectedCertifications : [];
-      profile.selectedSpecializations = !isEmpty(profile.selectedSpecializations) ? profile.selectedSpecializations : [];
+      // profile.selectedCertifications = !isEmpty(profile.selectedCertifications) ? profile.selectedCertifications : [];
+      // profile.selectedSpecializations = !isEmpty(profile.selectedSpecializations) ? profile.selectedSpecializations : [];
+      profile.selectedCertifications = [];
+      profile.selectedSpecializations = [];
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
       profile.website = !isEmpty(profile.website) ? profile.website : "";
       profile.socialMedia = !isEmpty(profile.socialMedia) ? profile.socialMedia : {};
@@ -252,15 +256,20 @@ class EditArtistProfile extends Component {
           state: profile.state,
           zip: profile.zip,
           phoneNumber: profile.phoneNumber,
+          selectedDistance: profile.selectedDistance,
+          selectedCertificationsArray: [],
+          selectedSpecializationsArray: [],
           // radius: profile.radius,
           // experience: profile.experience,
-          selectedCertifications: !isEmpty(profile.selectedCertifications) ? profile.selectedCertifications : [],
-          selectedSpecializations: !isEmpty(profile.selectedSpecializations) ? profile.selectedSpecializations : [],
+          // selectedCertifications: !isEmpty(profile.selectedCertifications) ? profile.selectedCertifications : [],
+          // selectedSpecializations: !isEmpty(profile.selectedSpecializations) ? profile.selectedSpecializations : [],
+          selectedCertifications: [],
+          selectedSpecializations: [],
           bio: profile.bio,
           website: profile.website,
-          facebook: profile.socialMedia.facebook,
-          instagram: profile.socialMedia.instagram,
-          twitter: profile.socialMedia.twitter
+          facebook: profile.facebook,
+          instagram: profile.instagram,
+          twitter: profile.twitter
         });
 
     }
@@ -296,8 +305,57 @@ class EditArtistProfile extends Component {
       twitter: this.state.twitter,
       website: this.state.website
     };
-    this.props.createProfile(profileData, this.props.history);
+
+    const formData = new FormData();
+
+    if (typeof this.state.selectedCertifications !== "undefined" && this.state.selectedCertifications !== null) {
+    this.state.selectedCertifications.map((certification, index) => {
+      this.state.selectedCertificationsArray[index] = certification.value;
+    });
   }
+    console.log("Certifications array: " + this.state.selectedCertificationsArray);
+
+    if (typeof this.state.selectedSpecializations !== "undefined" && this.state.selectedSpecializations !== null) {
+    this.state.selectedSpecializations.map((specialization, index) => {
+      this.state.selectedSpecializationsArray[index] = specialization.value;
+    });}
+    console.log("Specializations array: " + this.state.selectedSpecializationsArray);
+    console.log("Selected distance: " + this.state.selectedDistance.value);
+
+    // this.state.selectedCertifications.map((certification, index) => {
+    //     formData.append('selectedCertifications[index]', certification.value);
+    // })
+
+    formData.append('profilePic', this.state.profilePic);
+    formData.append('selectedSpecializations', this.state.selectedSpecializationsArray);
+    formData.append('selectedDistance', this.state.selectedDistance.value);
+    formData.append('selectedCertifications', this.state.selectedCertificationsArray);
+    formData.append('firstName', this.state.firstName);
+    formData.append('lastName', this.state.lastName);
+    formData.append('city', this.state.city);
+    formData.append('state', this.state.state);
+    formData.append('zip', this.state.zip);
+    formData.append('phoneNumber', this.state.phoneNumber);
+    formData.append('radius', this.state.radius);
+    formData.append('specialization', this.state.specialization);
+    formData.append('experience', this.state.experience);
+    formData.append('proficertificationslePic', this.state.certifications);
+    formData.append('bio', this.state.bio);
+    formData.append('instagram', this.state.instagram);
+    formData.append('facebook', this.state.facebook);
+    formData.append('twitter', this.state.twitter);
+    formData.append('website', this.state.website);
+
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    }
+
+    this.props.createProfile(formData, config, this.props.history);
+  }
+  //   this.props.createProfile(profileData, this.props.history);
+  // }
 
   render() {
     const { selectedSpecializations } = this.state;
@@ -438,6 +496,7 @@ class EditArtistProfile extends Component {
                   className="basic-select"
                   isSearchable
                   name="selectedDistance"
+                  
                   value={this.state.selectedDistance}
                   onChange={this.handleSelectChange("selectedDistance")}
                   options={this.state.distanceArray}
