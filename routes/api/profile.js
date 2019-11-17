@@ -5,6 +5,36 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const isEmpty = require('../../validation/is-empty');
+const multer = require('multer');
+const fs = require('fs');
+
+// Multer setup
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString().replace(/:/g,'-') + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(new Error({message: 'Image must be JPEG or PNG'}), false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
 
 //Load validation
 const validateProfileInput = require("../../validation/profile");
@@ -140,7 +170,7 @@ router.get("/:id", (req, res) => {
 // @desc    Create or edit user profile
 // @access  Private
 router.post(
-  "/",
+  "/", upload.single('profilePic'),
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateProfileInput(req.body);
@@ -154,6 +184,9 @@ router.post(
     // Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
+    profileFields.profilePic = req.file.path;
+    // profileFields.profilePic.data = fs.readFileSync(req.file.path);
+    // profileFields.profilePic.contentType = 'image/png';
     if (req.body.firstName) profileFields.firstName = req.body.firstName;
     if (req.body.lastName) profileFields.lastName = req.body.lastName;
     if (req.body.city) profileFields.city = req.body.city;

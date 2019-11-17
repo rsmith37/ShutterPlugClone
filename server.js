@@ -41,6 +41,9 @@ app.use("/api/users", users);
 app.use("/api/posts", posts);
 app.use("/api/profile", profile);
 
+// Set uploads to public to view images
+app.use('/uploads', express.static('uploads'));
+
 // const port = process.env.PORT || 5000;
 const port = 5000;
 

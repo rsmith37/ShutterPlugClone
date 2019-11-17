@@ -18,6 +18,10 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
+    
+
+    // const profilePicString = profile.profilePic.split('\\');
+    // const profilePicPath = profilePicString[1];
 
     let dashboardContent;
 
@@ -30,6 +34,9 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-white">Welcome <Link to={`/profile/${profile.user._id}`}>{user.firstName} {user.lastName}</Link></p>
+            <div className="img">
+              <img width="50%" src={`../../../../${profile.profilePic.replace(/\/\//g,'/')}`} alt="FILE NOT FOUND" srcset=""/>
+            </div>
             <ProfileActions />
             <div style={{ marginBottom: '20px' }}></div>
             <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete Account</button>

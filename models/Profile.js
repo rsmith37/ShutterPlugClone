@@ -7,6 +7,13 @@ const ProfileSchema = new schema({
     type: schema.Types.ObjectId, // Associate the user by its objectID
     ref: "users" // Reference the collection we want to refer to
   },
+  profilePic: {
+    type: String
+  },
+  // profilePic: {
+  //   type: Buffer,
+  //   contentType: String
+  // },
   firstName: {
     type: String,
     required: true
