@@ -11,6 +11,7 @@ class CreateArtistProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      profilePic: null,
       selectedSpecializations: null,
       selectedDistance: null,
       selectedCertifications: null,
@@ -222,12 +223,19 @@ class CreateArtistProfile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  fileSelectHandler = event => {
+    this.setState({
+      profilePic: event.target.files[0]
+    })
+  }
+
   handleSelectChange = name => selectedOption =>
     this.setState({ [name]: selectedOption });
 
   onSubmit(e) {
     e.preventDefault();
     const profileData = {
+      profilePic: this.state.profilePic,
       selectedSpecializations: this.state.selectedSpecializations,
       selectedDistance: this.state.selectedDistance,
       selectedCertifications: this.state.selectedCertifications,
@@ -247,7 +255,36 @@ class CreateArtistProfile extends Component {
       twitter: this.state.twitter,
       website: this.state.website
     };
-    this.props.createProfile(profileData, this.props.history);
+
+    const formData = new FormData();
+    formData.append('profilePic', this.state.profilePic);
+    formData.append('selectedSpecializations', this.state.selectedSpecializations);
+    formData.append('selectedDistance', this.state.selectedDistance);
+    formData.append('selectedCertifications', this.state.selectedCertifications);
+    formData.append('firstName', this.state.firstName);
+    formData.append('lastName', this.state.lastName);
+    formData.append('city', this.state.city);
+    formData.append('state', this.state.state);
+    formData.append('zip', this.state.zip);
+    formData.append('phoneNumber', this.state.phoneNumber);
+    formData.append('radius', this.state.radius);
+    formData.append('specialization', this.state.specialization);
+    formData.append('experience', this.state.experience);
+    formData.append('proficertificationslePic', this.state.certifications);
+    formData.append('bio', this.state.bio);
+    formData.append('instagram', this.state.instagram);
+    formData.append('facebook', this.state.facebook);
+    formData.append('twitter', this.state.twitter);
+    formData.append('website', this.state.website);
+
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    }
+
+    console.log(formData.values)
+    this.props.createProfile(formData, config, this.props.history);
   }
 
   render() {
@@ -259,7 +296,7 @@ class CreateArtistProfile extends Component {
       <div className="card mb-3">
         <h1 className="card-header">Create Artist Profile</h1>
         <div className="card-body text-left">
-          <form onSubmit={this.onSubmit}>
+          <form onSubmit={this.onSubmit} encType="multipart/form-data">
             <h3>Artist Info:</h3>
             <div className="form-row">
               <div className="form-group col-md-6">
@@ -512,6 +549,10 @@ class CreateArtistProfile extends Component {
                 onChange={this.onChange} 
                 />
               </div>
+            </div>
+            <h3>Profile Pic</h3>
+            <div>
+              <input type="file" name="profilePic" id="profilePic" className="form-control-file" onChange={this.fileSelectHandler}/>
             </div>
             <br />
             <input

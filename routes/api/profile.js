@@ -184,7 +184,7 @@ router.post(
     // Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
-    profileFields.profilePic = req.file.path;
+    if (req.file.path) profileFields.profilePic = req.file.path;
     // profileFields.profilePic.data = fs.readFileSync(req.file.path);
     // profileFields.profilePic.contentType = 'image/png';
     if (req.body.firstName) profileFields.firstName = req.body.firstName;
@@ -194,18 +194,18 @@ router.post(
     if (req.body.zip) profileFields.zip = req.body.zip;
     if (req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber;
     if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
-    if (typeof req.body.selectedCertifications !== "undefined") {
-      profileFields.selectedCertifications = []; 
-      req.body.selectedCertifications.map(element => {
-        profileFields.selectedCertifications.push(element.value);
-      });
-      }
-    if (typeof req.body.selectedSpecializations !== "undefined") {
-      profileFields.selectedSpecializations = []; 
-      req.body.selectedSpecializations.map(element => {
-        profileFields.selectedSpecializations.push(element.value);
-      })
-    }
+    // if (typeof req.body.selectedCertifications !== "undefined" && req.body.selectedCertifications[0] !== null) {
+    //   profileFields.selectedCertifications = []; 
+    //   req.body.selectedCertifications.map(element => {
+    //     profileFields.selectedCertifications.push(element.value);
+    //   });
+    //   }
+    // if (typeof req.body.selectedSpecializations !== "undefined" && req.body.selectedSpecializations[0] !== null) {
+    //   profileFields.selectedSpecializations = []; 
+    //   req.body.selectedSpecializations.map(element => {
+    //     profileFields.selectedSpecializations.push(element.value);
+    //   })
+    // }
     if (req.body.bio) profileFields.bio = req.body.bio;
     if (req.body.website) profileFields.website = req.body.website;
     

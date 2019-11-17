@@ -49,9 +49,9 @@ export const getProfileByUserId = userId => dispatch => {
 };
 
 // Create Profile
-export const createProfile = (profileData, history) => dispatch => {
+export const createProfile = (profileData, config, history) => dispatch => {
     axios
-    .post("/api/profile", profileData)
+    .post("/api/profile", profileData, config)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
