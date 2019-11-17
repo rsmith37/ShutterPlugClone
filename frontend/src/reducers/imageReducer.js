@@ -3,7 +3,7 @@ import {
   } from "../actions/types";
   
   const initialState = {
-    image: null
+    file: ""
   };
   
   export default function(state = initialState, action) {
@@ -11,7 +11,7 @@ import {
       case UPLOAD_IMAGE:
         return {
           ...state,
-          image: action.payload
+          file: action.payload.file
         };
       default:
         return state;

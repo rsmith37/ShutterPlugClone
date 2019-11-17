@@ -1,29 +1,31 @@
 import axios from "axios";
 import { UPLOAD_IMAGE, GET_IMAGES } from "./types";
+import setMultipartContentType from "../utils/setMultipartContentType";
 
 // Upload image
-export const uploadImage = image => dispatch => {
-  console.log("Image " + image);
-  const config = {
-    'Content-Type': 'multipart/form-data'
-  }
+export const uploadImage = file => dispatch => {
+  console.log("Image " + file);
+  console.log("Image size " + file.size);
+  console.log("Image mime type " + file.mimetype);
+  console.log("Image buffer " + file.buffer);
 
+  const config = { headers: { 'Content-Type': 'multipart/form-data', 'Data': file[0] } };
   let fd = new FormData();
-  fd.append('file', image);
-
+  fd.append('file', file[0])
+  setMultipartContentType();
     axios
       // .post(`/api/images/upload`, fd, config)
-      .post('/api/images/upload', image)
-      .then(res =>
+      .post('/api/images/upload', fd, config)
+      .then(res => {
         dispatch({
           type: UPLOAD_IMAGE,
-          payload: res.data
-        })
+          payload: res.file.file
+        })}
       )
       .catch(err =>
         dispatch({
           type: UPLOAD_IMAGE,
-          payload: null
+          payload: err
         })
       );
   };

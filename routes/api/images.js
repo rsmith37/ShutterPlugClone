@@ -11,26 +11,22 @@ const db = require("../../config/keys").mongoURI;
 const fs = require('fs')
 const Image = require('../../models/Image')
 
-// Create storage engine / object for GridFS
-const storage = new GridFsStorage({
-    url: db,
-    file: (req, file) => {
-      return new Promise((resolve, reject) => {
-        crypto.randomBytes(16, (err, buf) => {
-          if (err) {
-            return reject(err);
-          }
-          const filename = buf.toString('hex') + path.extname(file.originalname);
-          const fileInfo = {
-            filename: filename,
-            bucketName: 'uploads'
-          };
-          resolve(fileInfo);
-        });
-      });
-    }
-  });
-  const upload = multer({ storage });
+const app = express();
+
+
+//   const storage = multer.memoryStorage();
+// const upload = multer({ storage: storage });
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/tmp/my-uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+
+const upload = multer({ storage: storage })
 
   router.get("/test", (req, res) => res.json({ msg: "Images works!" }));
 
@@ -41,12 +37,23 @@ const storage = new GridFsStorage({
 //   "/upload", upload.single('file'), (req, res) => {
 //     res.json({file: req.body.file, test: "Post /upload worked!", filename: req.body.file.filename, fileinfo: req.body.file.fileInfo});
 //   });
-router.post('/upload', (req, res) => {
+// router.post('/upload', (req, res) => {
+//   let newImage = new Image();
+//   newImage.pic.data = fs.readFileSync("/Users/ryancunico/Desktop/shadowme.jpg");
+//   newImage.pic.contentType = 'image/png';
+//   newImage.save();
+//   res.json({success: "it worked"})
+// })
+
+router.post('/upload', upload.single('file'), (req, res, next) => {
   let newImage = new Image();
-  newImage.pic.data = fs.readFileSync("/Users/ryancunico/Desktop/shadowme.jpg");
-  newImage.pic.contentType = 'image/png';
+  const image = req;
+  image.file.data = fs.readFileSync(req.file.path);
+  image.file.contentType = req.file.mimetype;
+  newImage.pic.data = image.file.data;
+  newImage.pic.contentType = image.file.contentType;
   newImage.save();
-  res.json({success: "it worked"})
+  res.json({success: "it worked"});
 })
 
 // router.get('/pics', (req, res) => {
