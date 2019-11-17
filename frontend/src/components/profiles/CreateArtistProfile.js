@@ -12,6 +12,8 @@ class CreateArtistProfile extends Component {
     super(props);
     this.state = {
       profilePic: null,
+      selectedCertificationsArray: [],
+      selectedSpecializationsArray: [],
       selectedSpecializations: null,
       selectedDistance: null,
       selectedCertifications: null,
@@ -236,9 +238,9 @@ class CreateArtistProfile extends Component {
     e.preventDefault();
     const profileData = {
       profilePic: this.state.profilePic,
-      selectedSpecializations: this.state.selectedSpecializations,
+      // selectedSpecializations: this.state.selectedSpecializations,
       selectedDistance: this.state.selectedDistance,
-      selectedCertifications: this.state.selectedCertifications,
+      // selectedCertifications: this.state.selectedCertifications,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       city: this.state.city,
@@ -257,10 +259,29 @@ class CreateArtistProfile extends Component {
     };
 
     const formData = new FormData();
+
+    if (typeof this.state.selectedCertifications !== "undefined" && this.state.selectedCertifications !== null) {
+    this.state.selectedCertifications.map((certification, index) => {
+      this.state.selectedCertificationsArray[index] = certification.value;
+    });
+  }
+    console.log("Certifications array: " + this.state.selectedCertificationsArray);
+
+    if (typeof this.state.selectedSpecializations !== "undefined" && this.state.selectedSpecializations !== null) {
+    this.state.selectedSpecializations.map((specialization, index) => {
+      this.state.selectedSpecializationsArray[index] = specialization.value;
+    });}
+    console.log("Specializations array: " + this.state.selectedSpecializationsArray);
+    console.log("Selected distance: " + this.state.selectedDistance.value);
+
+    // this.state.selectedCertifications.map((certification, index) => {
+    //     formData.append('selectedCertifications[index]', certification.value);
+    // })
+
     formData.append('profilePic', this.state.profilePic);
-    formData.append('selectedSpecializations', this.state.selectedSpecializations);
-    formData.append('selectedDistance', this.state.selectedDistance);
-    formData.append('selectedCertifications', this.state.selectedCertifications);
+    formData.append('selectedSpecializations', this.state.selectedSpecializationsArray);
+    formData.append('selectedDistance', this.state.selectedDistance.value);
+    formData.append('selectedCertifications', this.state.selectedCertificationsArray);
     formData.append('firstName', this.state.firstName);
     formData.append('lastName', this.state.lastName);
     formData.append('city', this.state.city);
@@ -283,9 +304,11 @@ class CreateArtistProfile extends Component {
       }
     }
 
-    console.log(formData.values)
     this.props.createProfile(formData, config, this.props.history);
   }
+
+  //   req.body.selectedCertifications.map(element => {
+  //     profileFields.selectedCertifications.push(element.value);
 
   render() {
     const { selectedSpecializations } = this.state;
@@ -296,7 +319,7 @@ class CreateArtistProfile extends Component {
       <div className="card mb-3">
         <h1 className="card-header">Create Artist Profile</h1>
         <div className="card-body text-left">
-          <form onSubmit={this.onSubmit} encType="multipart/form-data">
+          <form onSubmit={this.onSubmit}>
             <h3>Artist Info:</h3>
             <div className="form-row">
               <div className="form-group col-md-6">
