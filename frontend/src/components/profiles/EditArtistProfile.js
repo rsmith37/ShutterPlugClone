@@ -12,6 +12,7 @@ class EditArtistProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      profilePic: null,
       selectedSpecializations: null,
       selectedDistance: null,
       selectedCertifications: null,
@@ -280,12 +281,19 @@ class EditArtistProfile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  fileSelectHandler = event => {
+    this.setState({
+      profilePic: event.target.files[0]
+    })
+  }
+
   handleSelectChange = name => selectedOption =>
     this.setState({ [name]: selectedOption });
 
   onSubmit(e) {
     e.preventDefault();
     const profileData = {
+      profilePic: this.state.profilePic,
       selectedSpecializations: this.state.selectedSpecializations,
       selectedDistance: this.state.selectedDistance,
       selectedCertifications: this.state.selectedCertifications,
@@ -620,6 +628,10 @@ class EditArtistProfile extends Component {
                 onChange={this.onChange} 
                 />
               </div>
+            </div>
+            <h3>Profile Pic</h3>
+            <div>
+              <input type="file" name="profilePic" id="profilePic" className="form-control-file" onChange={this.fileSelectHandler}/>
             </div>
             <br />
             <input

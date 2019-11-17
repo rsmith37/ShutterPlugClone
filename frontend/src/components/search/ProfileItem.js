@@ -10,8 +10,16 @@ class ProfileItem extends Component {
     return (
         <div>{isEmpty(profile.user) ? null : (<section className="search-result-item mb-3">
               <div className="search-result-item-body">
+              
                 <div className="row">
+                {isEmpty(profile.profilePic) ? null : (
+                <img
+                  className="image"
+                  src={profile.profilePic}
+                  height="150px"
+                />)}
                   <div className="col-sm-9">
+                 
                     <h4 className="artistName mt-2 mb-1">{profile.firstName} {profile.lastName}</h4>
                     <p className="locationInfo text-muted font-italic mb-1">{profile.city}, {profile.state} {profile.zip}</p>
                     {isEmpty(profile.selectedSpecializations) ? null : (profile.selectedSpecializations.map((specialization, index) => (

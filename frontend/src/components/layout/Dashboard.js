@@ -5,6 +5,7 @@ import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import ProfileActions from '../layout/ProfileActions';
 import { Link } from "react-router-dom";
+import isEmpty from "../../validation/is-empty";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -34,9 +35,11 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-white">Welcome <Link to={`/profile/${profile.user._id}`}>{user.firstName} {user.lastName}</Link></p>
+            {isEmpty(profile.profilePic) ? null : (
             <div className="img">
-              <img width="50%" src={`../../../../${profile.profilePic.replace(/\/\//g,'/')}`} alt="FILE NOT FOUND" srcset=""/>
-            </div>
+              <img className="mb-4" width="40%" src={`../../../../${profile.profilePic.replace(/\/\//g,'/')}`} alt="FILE NOT FOUND" srcset=""/>
+              
+            </div>)};
             <ProfileActions />
             <div style={{ marginBottom: '20px' }}></div>
             <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete Account</button>
