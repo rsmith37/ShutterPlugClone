@@ -19,7 +19,7 @@ export const uploadImage = file => dispatch => {
       .then(res => {
         dispatch({
           type: UPLOAD_IMAGE,
-          payload: res.file.file
+          payload: res
         })}
       )
       .catch(err =>
