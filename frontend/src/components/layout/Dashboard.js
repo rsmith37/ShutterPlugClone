@@ -27,7 +27,9 @@ class Dashboard extends Component {
     let dashboardContent;
 
     if (profile === null || loading) {
-      dashboardContent = (<div><h2 className="lead text-white">Loading dashboard...</h2></div>);
+      dashboardContent = (<div>
+        <h2 className="lead text-white">Loading dashboard...</h2>
+        </div>);
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
@@ -50,14 +52,14 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-white">Welcome {user.firstName}</p>
-            <p>You have not yet set up a profile, please add some info</p>
+            <p className="lead text-white">You have not yet set up a profile, please add some info</p>
             <Link to="/profile/createArtist" className="btn btn-lg btn-info">
               Create Profile
             </Link>
           </div>
         );
-      }
-    }
+      }}
+    
     
     return (
       <div className="dashboard">

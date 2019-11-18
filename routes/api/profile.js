@@ -197,18 +197,18 @@ router.post(
     if (req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber;
     // if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
     // if (typeof req.body.selectedCertifications !== "undefined" && req.body.selectedCertifications[0] !== null) {  
-      if (req.body.selectedCertifications) {
+      profileFields.selectedCertifications = [];   
+    if (req.body.selectedCertifications) {
         const certArray = req.body.selectedCertifications.split(',');
-      profileFields.selectedCertifications = []; 
+      
       certArray.map(element => {
         profileFields.selectedCertifications.push(element);
       });
       }
     // if (typeof req.body.selectedSpecializations !== "undefined" && req.body.selectedSpecializations[0] !== null) {
+      profileFields.selectedSpecializations = []; 
       if (req.body.selectedSpecializations){
         const specialArray = req.body.selectedSpecializations.split(',');
-
-      profileFields.selectedSpecializations = []; 
       
       specialArray.map(element => {
         profileFields.selectedSpecializations.push(element);
