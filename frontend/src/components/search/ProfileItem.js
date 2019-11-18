@@ -12,12 +12,14 @@ class ProfileItem extends Component {
               <div className="search-result-item-body">
               
                 <div className="row">
+                <div className="col-sm-3 text-align-center mt-3">
                 {isEmpty(profile.profilePic) ? null : (
                 <img
                   className="image"
                   src={profile.profilePic}
                   height="150px"
                 />)}
+                </div>
                   <div className="col-sm-9">
                  
                     <h4 className="artistName mt-2 mb-1">{profile.firstName} {profile.lastName}</h4>
