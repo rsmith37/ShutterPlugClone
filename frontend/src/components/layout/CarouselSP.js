@@ -10,15 +10,15 @@ export default function CarouselSP() {
         <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
         <div>
             <img src={require("../../assets/carousel_photo_1.jpg")} width="100%" height="500px" />
-            <p className="legend">Legend 1</p>
+            <p className="legend">Search for professionals in your area</p>
         </div>
         <div>
             <img src={require("../../assets/carousel_photo_2.jpg")} width="100%" height="500px" />
-            <p className="legend">Legend 2</p>
+            <p className="legend">Join today to like, comment, and help promote an artist</p>
         </div>
         <div>
             <img src={require("../../assets/carousel_photo_3.jpg")} width="100%" height="500px" />
-            <p className="legend">Legend 3</p>
+            <p className="legend">Help the photographer community grow</p>
         </div>
     </Carousel>
     )

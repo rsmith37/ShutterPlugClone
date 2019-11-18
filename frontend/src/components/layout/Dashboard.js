@@ -37,7 +37,7 @@ class Dashboard extends Component {
             <p className="lead text-white">Welcome <Link to={`/profile/${profile.user._id}`}>{user.firstName} {user.lastName}</Link></p>
             {isEmpty(profile.profilePic) ? null : (
             <div className="img">
-              <img className="mb-4" width="40%" src={`../../../../${profile.profilePic.replace(/\/\//g,'/')}`} alt="FILE NOT FOUND" srcset=""/>
+              <img className="mb-4" width="150px" src={`../../../../${profile.profilePic.replace(/\/\//g,'/')}`} alt="FILE NOT FOUND" srcset=""/>
               
             </div>)};
             <ProfileActions />
