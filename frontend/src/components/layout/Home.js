@@ -54,7 +54,7 @@ class Home extends Component {
                      </h5>
                 </div>
                 <div className = "img-fluid">
-                    <img src ={require("../../assets/carousel_photo_4.jpg")} width="100%" height="500px" />    
+                    <img src ={require("../../assets/carousel_photo_4.jpg")} width="100%" height="400px" />    
                 </div>
                 <div className="text-center px-2">
                     <h4>Have questions, offer feedback, or would like to report a bug?{"\n"}</h4>
