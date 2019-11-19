@@ -238,6 +238,7 @@ class SearchArtist extends Component {
       selectedCertification
     }
 
+    console.log(searchData)
     this.props.searchProfiles(searchData);
   }
 

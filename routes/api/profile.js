@@ -105,16 +105,18 @@ router.get("/all", (req, res) => {
 // @access  Public
 router.post("/search", (req, res) => {
   const errors = {};
-
+  
   Profile.find({ $and:[
     {firstName: new RegExp('.*' + req.body.firstName + '.*', "i")},
-    {lastName: new RegExp('.*' + req.body.lastName + '.*', "i")}
+    {lastName: new RegExp('.*' + req.body.lastName + '.*', "i")},
+    {$or: [{selectedSpecializations: { "$in": []}}, {selectedSpecializations: { "$in": req.body.selectedSpecializations}}]},
+    {$or: [{selectedCertification: { "$in": []}}, {selectedCertification: { "$in": req.body.selectedCertification}}]},
   ]})
     .populate("user", "email")
     // .where('firstName').regex('^' + req.body.firstName + '$')
     // .where('firstName').regex('.*' + req.body.firstName + '.*')
-    .where('selectedSpecializations').in(req.body.selectedSpecializations)
-    .where('selectedCertifications').in(req.body.selectedCertification)
+    // .where('selectedSpecializations').in(req.body.selectedSpecializations)
+    // .where('selectedCertifications').in(req.body.selectedCertification)
     .then(profiles => {
       if (!profiles) {
         errors.noprofile = "There are no profiles";
