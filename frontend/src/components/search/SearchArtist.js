@@ -278,10 +278,10 @@ class SearchArtist extends Component {
                 />
               </div>
             </div>
-            <br />
-            <h3>Search by Location</h3>
-            <div className="form-row">
-              <div className="form-group col-md-6">
+            {/* <br /> */}
+            {/* <h3>Search by Location</h3> */}
+            {/* <div className="form-row"> */}
+              {/* <div className="form-group col-md-6">
                 <div className="form-row">
                   <i className="fas fa-map-marker px-2"></i>
                   <label htmlFor="">Zip Code</label>
@@ -294,8 +294,8 @@ class SearchArtist extends Component {
                   className="form-control"
                   placeholder="Enter zip code..."
                 />
-              </div>
-              <div className="form-group col-md-6">
+              </div> */}
+              {/* <div className="form-group col-md-6">
                 <div className="form-row">
                   <i className="far fa-compass px-2"></i>
                   <label htmlFor="">Distance</label>
@@ -309,8 +309,8 @@ class SearchArtist extends Component {
                   onChange={this.handleSelectChange("selectedDistance")}
                   options={this.state.distanceArray}
                 />
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
             <br />
             <h3>Search by Qualifications</h3>
             <div className="form-group">
