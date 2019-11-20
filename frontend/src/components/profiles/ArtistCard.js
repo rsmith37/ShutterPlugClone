@@ -4,7 +4,6 @@ import "./ArtistCard.css";
 export default class ArtistCard extends Component {
   render() {
     return (
-      <div className="container">
         <div className="row">
           <div className="col-md-12 col-md-pull-6">
             <section className="search-result-item">
@@ -125,7 +124,6 @@ export default class ArtistCard extends Component {
             </section>
           </div>
         </div>
-      </div>
     );
   }
 }

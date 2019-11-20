@@ -4,6 +4,37 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const isEmpty = require('../../validation/is-empty');
+const multer = require('multer');
+const fs = require('fs');
+
+// Multer setup
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString().replace(/:/g,'-') + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(new Error({message: 'Image must be JPEG or PNG'}), false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
 
 //Load validation
 const validateProfileInput = require("../../validation/profile");
@@ -69,14 +100,62 @@ router.get("/all", (req, res) => {
     });
 });
 
+// @route   POST api/profile/search
+// @desc    POST profiles via search form with params
+// @access  Public
+router.post("/search", (req, res) => {
+  const errors = {};
+  
+  Profile.find({ $and:[
+    {firstName: new RegExp('.*' + req.body.firstName + '.*', "i")},
+    {lastName: new RegExp('.*' + req.body.lastName + '.*', "i")},
+    // {$or: [{selectedSpecializations: { "$in": []}}, {selectedSpecializations: { "$in": req.body.selectedSpecializations}}]},
+    // {$or: [{selectedCertification: { "$in": []}}, {selectedCertification: { "$in": req.body.selectedCertification}}]},
+  ]})
+    .populate("user", "email")
+    .where('firstName').regex('^' + req.body.firstName + '$')
+    .where('firstName').regex('.*' + req.body.firstName + '.*')
+    .where('selectedSpecializations').in(req.body.selectedSpecializations)
+    .where('selectedCertifications').in(req.body.selectedCertification)
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = "There are no profiles";
+        // return res.status(404).json(errors);
+        return res.status(404).json(profiles);
+      }
+      res.json(profiles);
+    })
+    .catch(err => {
+      res.status(404).json({ profile: "There are no profiles to display." });
+    });
+});
+
 // @route   GET api/profile/handle/:handle
 // @desc    Get profile by handle
 // @access  Public
 // req.params.handle grabs the ":handle" in the URL
-router.get("/handle/:handle", (req, res) => {
+// router.get("/handle/:handle", (req, res) => {
+//   const errors = {};
+//   Profile.findOne({ handle: req.params.handle })
+//     .populate("user", "firstName")
+//     .then(profile => {
+//       if (!profile) {
+//         errors.noprofile = "There is no profile for this user.";
+//         res.status(404).json(errors);
+//       }
+//       res.json(profile);
+//     })
+//     .catch(err => {
+//       res.status(404).json({ profile: "There is no profile for this user." });
+//     });
+// });
+
+// @route   GET api/profile/:id
+// @desc    Get profile by user ID
+// @access  Public
+router.get("/:id", (req, res) => {
   const errors = {};
-  Profile.findOne({ handle: req.params.handle })
-    .populate("user", "firstName")
+  Profile.findOne({ user: req.params.id })
     .then(profile => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user.";
@@ -89,29 +168,11 @@ router.get("/handle/:handle", (req, res) => {
     });
 });
 
-// @route   GET api/user/:user_id
-// @desc    Get profile by user ID
-// @access  Public
-// req.params.handle grabs the ":handle" in the URL
-router.get("/user/:user_id", (req, res) => {
-  const errors = {};
-  Profile.findOne({ user: req.params.user_id })
-    .populate("user", "firstName")
-    .then(profile => {
-      if (!profile) {
-        errors.noprofile = "There is no profile for this user.";
-        res.status(404).json(errors);
-      }
-      res.json({ profile: "There is no profile for this user." });
-    })
-    .catch(err => res.status(404).json(err));
-});
-
 // @route   POST api/profile
 // @desc    Create or edit user profile
 // @access  Private
 router.post(
-  "/",
+  "/", upload.single('profilePic'),
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateProfileInput(req.body);
@@ -125,28 +186,46 @@ router.post(
     // Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (req.body.handle) profileFields.handle = req.body.handle;
-    if (req.body.location) profileFields.location = req.body.location;
-    if (req.body.phone) profileFields.phone = req.body.phone;
-    if (typeof req.body.specializations !== "undefined") {
-      profileFields.specializations = req.body.specializations.split(",");
+    if (req.file !== null && typeof req.file !== 'undefined') {
+    if (req.file.path) {profileFields.profilePic = req.file.path;}}
+    // profileFields.profilePic.data = fs.readFileSync(req.file.path);
+    // profileFields.profilePic.contentType = 'image/png';
+    if (req.body.firstName) profileFields.firstName = req.body.firstName;
+    if (req.body.lastName) profileFields.lastName = req.body.lastName;
+    if (req.body.city) profileFields.city = req.body.city;
+    if (req.body.state) profileFields.state = req.body.state;
+    if (req.body.zip) profileFields.zip = req.body.zip;
+    if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
+    if (req.body.phoneNumber) profileFields.phoneNumber = req.body.phoneNumber;
+    // if (req.body.selectedDistance) profileFields.selectedDistance = req.body.selectedDistance;
+    // if (typeof req.body.selectedCertifications !== "undefined" && req.body.selectedCertifications[0] !== null) {  
+      profileFields.selectedCertifications = [];   
+    if (req.body.selectedCertifications) {
+        const certArray = req.body.selectedCertifications.split(',');
+      
+      certArray.map(element => {
+        profileFields.selectedCertifications.push(element);
+      });
+      }
+    // if (typeof req.body.selectedSpecializations !== "undefined" && req.body.selectedSpecializations[0] !== null) {
+      profileFields.selectedSpecializations = []; 
+      if (req.body.selectedSpecializations){
+        const specialArray = req.body.selectedSpecializations.split(',');
+      
+      specialArray.map(element => {
+        profileFields.selectedSpecializations.push(element);
+      })
     }
+    if (req.body.bio) profileFields.bio = req.body.bio;
     if (req.body.website) profileFields.website = req.body.website;
-    if (req.body.priceRange) profileFields.priceRange = req.body.priceRange;
-    if (typeof req.body.certifications !== "undefined") {
-      profileFields.certifications = req.body.certifications.split(",");
-    }
-
+    
     // Social media
     profileFields.socialMedia = {};
-    if (req.body.youtube) profileFields.socialMedia.youtube = req.body.youtube;
     if (req.body.twitter) profileFields.socialMedia.twitter = req.body.twitter;
     if (req.body.facebook)
       profileFields.socialMedia.facebook = req.body.facebook;
     if (req.body.instagram)
       profileFields.socialMedia.instagram = req.body.instagram;
-    if (req.body.linkedin)
-      profileFields.socialMedia.linkedin = req.body.linkedin;
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
@@ -162,9 +241,9 @@ router.post(
         // Create new profile
 
         // Check if handle exists
-        Profile.findOne({ handle: profileFields.handle }).then(profile => {
+        Profile.findOne({ user: profileFields.user }).then(profile => {
           if (profile) {
-            errors.handle = "That handle already exists";
+            errors.user = "That user already has a profile";
             res.status(400).json(errors);
           }
 
