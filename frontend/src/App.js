@@ -12,7 +12,7 @@ import Header from "./components/layout/Header";
 import CreateArtistProfile from "./components/profiles/CreateArtistProfile";
 import EditArtistProfile from './components/profiles/EditArtistProfile';
 import SearchArtist from "./components/search/SearchArtist";
-import ArtistCard from "./components/profiles/ArtistCard";
+import ArtistCard from './components/profiles/ArtistCard';
 import Register from "./components/profiles/Register";
 import Login from "./components/profiles/Login";
 import Footer from "./components/layout/Footer";
@@ -54,7 +54,6 @@ const App = () => {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/search" component={BrowseArtists} />
-              <Route exact path="/exampleSearch" component={ArtistCard} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:userId" component={Profile} />
               <Switch>

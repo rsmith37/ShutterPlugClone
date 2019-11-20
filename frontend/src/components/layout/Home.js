@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CustomHome.css";
 import CarouselSP from "./CarouselSP";
-import ContactUs from "./ContactUs";
-import { Link } from "react-router-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { createRequireFromPath } from "module";
+// import ContactUs from "./ContactUs";
+// import { Link } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import { createRequireFromPath } from "module";
 
 
 class Home extends Component {
@@ -54,7 +54,7 @@ class Home extends Component {
                      </h5>
                 </div>
                 <div className = "img-fluid">
-                    <img src ={require("../../assets/carousel_photo_4.jpg")} width="100%" height="400px" />    
+                    <img src ={require("../../assets/carousel_photo_4.jpg")} width="100%" height="400px" alt=""/>    
                 </div>
                 <div className="text-center px-2">
                     <h4>Have questions, offer feedback, or would like to report a bug?{"\n"}</h4>

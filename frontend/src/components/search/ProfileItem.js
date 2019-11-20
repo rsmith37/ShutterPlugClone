@@ -18,6 +18,8 @@ class ProfileItem extends Component {
                   className="image"
                   src={profile.profilePic}
                   height="150px"
+                  width="150px"
+                  alt="User's Profile"
                 />)}
                 </div>
                   <div className="col-sm-9">
@@ -38,6 +40,7 @@ class ProfileItem extends Component {
                     className="text-black p-2"
                     href={profile.website}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fas fa-globe fa-lg mt-4"></i>
                   </a>
@@ -47,6 +50,7 @@ class ProfileItem extends Component {
                     className="text-black p-2"
                     href={profile.socialMedia.instagram}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-instagram fa-lg"></i>
                   </a>
@@ -56,6 +60,7 @@ class ProfileItem extends Component {
                     className="text-black p-2"
                     href={profile.socialMedia.facebook}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-facebook fa-lg"></i>
                   </a>
@@ -65,6 +70,7 @@ class ProfileItem extends Component {
                     className="text-black p-2"
                     href={profile.socialMedia.twitter}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-twitter fa-lg"></i>
                   </a>

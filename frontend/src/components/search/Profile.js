@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Spinner from "../common/Spinner";
 import { getProfileByUserId } from "../../actions/profileActions";
 import isEmpty from '../../validation/is-empty';
 
@@ -70,6 +69,7 @@ class Profile extends Component {
                     className="text-black p-2"
                     href={profile.website}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fas fa-globe fa-2x"></i>
                   </a>
@@ -79,6 +79,7 @@ class Profile extends Component {
                     className="text-black p-2"
                     href={profile.socialMedia.instagram}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-instagram fa-2x"></i>
                   </a>
@@ -88,6 +89,7 @@ class Profile extends Component {
                     className="text-black p-2"
                     href={profile.socialMedia.facebook}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-facebook fa-2x"></i>
                   </a>
@@ -97,6 +99,7 @@ class Profile extends Component {
                     className="text-black p-2"
                     href={profile.socialMedia.twitter}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-twitter fa-2x"></i>
                   </a>
