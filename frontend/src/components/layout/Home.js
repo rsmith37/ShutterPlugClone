@@ -5,6 +5,7 @@ import CarouselSP from "./CarouselSP";
 import ContactUs from "./ContactUs";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { createRequireFromPath } from "module";
 
 
 class Home extends Component {
@@ -33,55 +34,35 @@ class Home extends Component {
         return (
             <div className="body card mb-3">
                 <div className = "card-header">
-                    <h1>
-                         Welcome to Shutter Plug!
-                    </h1>
+                    <h1>Welcome to Shutter Plug</h1>
                     <p>
                         Let us help you find the professional you are looking for!
                     </p>
                 </div>    
-                <div className = "card-body">
-                    <div className = "mt-2"> 
-                        <h3 className="font-weight-bolder px-2 text-center">
-                            Why Shutter Plug:
-                        </h3> 
-                        <p className = "px-2 text-center">
-                            In the past, photographers have had a difficult time getting exposure. Most 
-                            of the larger more known companies have a major advantage in the market. 
-                            Social Media apps such as Instagram and Imgur have helped new photographers 
-                            gain exposure and find work. Shutter Plug hopes to create a bridge between 
-                            business and photographers to create more work and exposure for new and 
-                            inspiring photographers. This will create more competition in the market and
-                            prevent any company from having full control over prices and services. 
-                        </p>
-                    </div>     
-                    <div className = "mt-2">
+                <div className = "card-body">     
+                    <div>
                         <CarouselSP/>
-                    </div>
-                    <div className = "mt-2">
-                        <h3 className="font-weight-bolder px-2 text-center">
-                            My Story:
-                        </h3>
-                        <p className = "px-2 text-center">
-                            My name is Christy Conners, I am a mother, an artist, a teacher, and a problem solver.
-                            Since 2005 I have been a teacher for Gwinnett County Public Schools.
-                            Year after year my students have questions regarding how to find work in this market and connect with
-                            clients. Dealing with the frustrations of my young entrepreneurs and my desperate need to help them as they
-                            began their journey created the idea of Shutter Plug. My goal is to not only help my former students, but the 
-                            community as a whole.I have been approached by many different clients and businesses that are in need of talented photographers.
-                            ShutterPlug can help all these people connect and create a community of collaboration that Atlanta and
-                            the metro area needs!
-                        </p>
-                    </div>
-                    <div className="text-center px-2">
-                        <h4>Have questions, offer feedback, or would like to report a bug?{"\n"}</h4>
-                        <div className = "text-center p-3 x-2">
-                            <h5><a href="mailto:cconnersillustrations@hotmail.com">Contact Shutter Plug!</a></h5>
-                        </div>
                     </div>   
+                </div>
+                <div className = "mx-2"> 
+                    <h3 className="font-weight-bolder px-2 text-center">
+                        About Shutter Plug
+                    </h3> 
+                    <h5 className = "about text-center mb-2">
+                        Shutter Plug helps to promote competition for photographers and
+                        help new professionals become successful in today's market.
+                     </h5>
+                </div>
+                <div className = "img-fluid">
+                    <img src ={require("../../assets/carousel_photo_4.jpg")} width="100%" height="400px" />    
+                </div>
+                <div className="text-center px-2">
+                    <h4>Have questions, offer feedback, or would like to report a bug?{"\n"}</h4>
+                    <div className = "text-center px-3">
+                        <h5><a href="mailto:cconnersillustrations@hotmail.com">Contact Shutter Plug!</a></h5>
+                    </div>
                 </div>           
             </div>
-
         )
     }
 }
