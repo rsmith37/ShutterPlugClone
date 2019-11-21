@@ -29,13 +29,13 @@ class Profile extends Component {
               </div>
           <div className="card card-body bg-light mb-3">
           <h1 className="text-center text-info">{profile.firstName} {profile.lastName}</h1>
-            <hr />
+            <hr/>
             {isEmpty(profile.profilePic) ? null : (<span><img height="200px" src={`../../../../${profile.profilePic.replace(/\/\//g,'/')}`} alt="FILE NOT FOUND" srcset=""/><hr/></span>)}
             <h3 className="text-center text-info">Location:</h3>
             <p className="lead">
                 <span>{profile.city}, {profile.state}, {profile.zip}</span>
             </p>
-            <hr />
+            <hr/>
             <h3 className="text-center text-info">About Me:</h3>
             <p className="lead">
               {isEmpty(profile.bio) ? (

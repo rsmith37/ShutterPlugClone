@@ -6,16 +6,16 @@ import { Carousel } from 'react-responsive-carousel';
 export default function CarouselSP() {
     return (
         <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
-        <div className = "img-fluid">
-            <img src={require("../../assets/carousel_photo_1.jpg")} width="100%" height="400px" alt="" />
+        <div className = "img-fluid mb-5">
+            <img src={require("../../assets/carousel_photo_1.jpg")} width="100%" height="100%" alt="" />
             <p className="legend">Search for professionals in your area</p>
         </div>
-        <div className = "img-fluid">
-            <img src={require("../../assets/carousel_photo_2.jpg")} width="100%" height="400px" alt=""/>
+        <div className = "img-fluid mb-5">
+            <img src={require("../../assets/carousel_photo_2.jpg")} width="100%" height="100%" alt=""/>
             <p className="legend">Join today to like, comment, and help promote an artist</p>
         </div>
-        <div className = "img-fluid">
-            <img src={require("../../assets/carousel_photo_3.jpg")} width="100%" height="400px" alt=""/>
+        <div className = "img-fluid mb-5">
+            <img src={require("../../assets/carousel_photo_3.jpg")} width="100%" height="100%" alt=""/>
             <p className="legend">Help the photographer community grow</p>
         </div>
     </Carousel>

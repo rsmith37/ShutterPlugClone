@@ -42,7 +42,7 @@ class ProfileItem extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fas fa-globe fa-lg mt-4"></i>
+                    <i className="fas fa-globe fa-lg mt-2"></i>
                   </a>
                 )}
                       {isEmpty(profile.socialMedia && profile.socialMedia.instagram) ? null : (
@@ -52,7 +52,7 @@ class ProfileItem extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fab fa-instagram fa-lg"></i>
+                    <i className="fab fa-instagram fa-lg mt-2"></i>
                   </a>
                 )}
                       {isEmpty(profile.socialMedia && profile.socialMedia.facebook) ? null : (
@@ -62,7 +62,7 @@ class ProfileItem extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fab fa-facebook fa-lg"></i>
+                    <i className="fab fa-facebook fa-lg  mt-2"></i>
                   </a>
                 )}
                       {isEmpty(profile.socialMedia && profile.socialMedia.twitter) ? null : (
@@ -72,7 +72,7 @@ class ProfileItem extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fab fa-twitter fa-lg"></i>
+                    <i className="fab fa-twitter fa-lg  mt-2"></i>
                   </a>
                 )}
                     </div>

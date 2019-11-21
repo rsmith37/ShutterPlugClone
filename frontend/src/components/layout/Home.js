@@ -44,22 +44,23 @@ class Home extends Component {
                         <CarouselSP/>
                     </div>   
                 </div>
-                <div className = "mx-2"> 
+                <div className = "text-center px-4"> 
                     <h3 className="font-weight-bolder px-2 text-center">
                         About Shutter Plug
                     </h3> 
-                    <h5 className = "about text-center mb-2">
+                    {/* <h5 className = "about text-center mb-2"> */}
+                    <h5 className="mb-5">
                         Shutter Plug helps to promote competition for photographers and
                         help new professionals become successful in today's market.
                      </h5>
                 </div>
-                <div className = "img-fluid">
-                    <img src ={require("../../assets/carousel_photo_4.jpg")} width="100%" height="400px" alt=""/>    
+                <div className = "img-fluid mb-5">
+                    <img src ={require("../../assets/carousel_photo_4.jpg")} width="100%" height="100%" alt=""/>    
                 </div>
                 <div className="text-center px-2">
                     <h4>Have questions, offer feedback, or would like to report a bug?{"\n"}</h4>
                     <div className = "text-center px-3">
-                        <h5><a href="mailto:cconnersillustrations@hotmail.com">Contact Shutter Plug!</a></h5>
+                        {/* <h5><a href="mailto:cconnersillustrations@hotmail.com">Contact Shutter Plug!</a></h5> */}
                         {/* Changed to Shutter Plug Developers email */}
                         <h5><a href="mailto:shutterplugdevelopers@gmail.com">Contact Shutter Plug!</a></h5>
                     </div>
