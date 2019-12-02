@@ -2,12 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const path = require('path');
 
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 
-const path = require('path');
+
 
 const app = express();
 
@@ -38,6 +39,14 @@ app.use(passport.initialize());
 // Passport configuration - passport uses what's called a "strategy"
 require("./config/passport")(passport); // Pass in Passport to the Passport config
 
+//Use Routes
+app.use("/api/users", users);
+app.use("/api/posts", posts);
+app.use("/api/profile", profile);
+
+// Set uploads to public to view images
+// app.use('/uploads', express.static('uploads'));
+
 //Serve static assets if in production
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
@@ -45,15 +54,6 @@ if(process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
   })
   }
-
-//Use Routes
-app.use("/api/users", users);
-app.use("/api/posts", posts);
-app.use("/api/profile", profile);
-
-// Set uploads to public to view images
-app.use('/uploads', express.static('uploads'));
-
 
 
 const port = process.env.PORT || 5000;
