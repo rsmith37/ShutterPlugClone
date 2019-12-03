@@ -45,7 +45,7 @@ app.use("/api/posts", posts);
 app.use("/api/profile", profile);
 
 // Set uploads to public to view images
-// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 
 //Serve static assets if in production
 if(process.env.NODE_ENV === 'production') {
