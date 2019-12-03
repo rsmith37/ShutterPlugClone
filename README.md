@@ -40,3 +40,4 @@ To connect customers and business owners to photographers and videographers usin
 **Project Manager:** Jira
 
 ## License ##
+![alt text](https://github.com/GGC-SD/ShutterPlug/blob/master/doc/IP_pg1.png "IP Agreement - Page 1")
