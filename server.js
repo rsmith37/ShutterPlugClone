@@ -12,6 +12,10 @@ const posts = require("./routes/api/posts");
 
 const app = express();
 
+// Body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // Database configuration
 const db = require("./config/keys").mongoURI;
 
@@ -29,9 +33,7 @@ mongoose.set("useUnifiedTopology", true);
 // by default, you need to set it to false.
 mongoose.set("useFindAndModify", false);
 
-// Body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // Passport middleware
 app.use(passport.initialize());
@@ -48,12 +50,12 @@ app.use("/api/profile", profile);
 app.use('/uploads', express.static('uploads'));
 
 //Serve static assets if in production
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('frontend/build'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-  })
-  }
+// if(process.env.NODE_ENV === 'production') {
+//   app.use(express.static('frontend/build'));
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+//   })
+//   }
 
 
 const port = process.env.PORT || 5000;
