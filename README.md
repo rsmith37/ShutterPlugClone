@@ -71,4 +71,3 @@ https://github.com/GGC-SD/ShutterPlug/tree/master/doc
 ![alt text](https://github.com/GGC-SD/ShutterPlug/blob/master/doc/IP_pg1.png "IP Agreement - Page 1")
 ![alt text](https://github.com/GGC-SD/ShutterPlug/blob/master/doc/IP_pg2.png "IP Agreement - Page 2")
 ![alt text](https://github.com/GGC-SD/ShutterPlug/blob/master/doc/IP_pg3.png "IP Agreement - Page 3")
-![alt text](https://github.com/GGC-SD/ShutterPlug/blob/master/doc/IP_pg4.png "IP Agreement - Page 4")
