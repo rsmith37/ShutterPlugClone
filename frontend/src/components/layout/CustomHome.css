@@ -1,0 +1,13 @@
+.body {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.sPLogo {
+    height: 100px;
+}
+
+.about {
+    padding-left: 30%;
+    padding-right: 30%;
+}
